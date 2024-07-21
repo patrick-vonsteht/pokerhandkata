@@ -95,7 +95,7 @@ public class FlushRuleTest {
         PokerHandComparisonRule mockedHighCardRule = mock(HighCardRule.class);
         when(mockedHighCardRule.compare(hand1, hand2)).thenReturn(resultForHighCardRule);
 
-        FlushRule rule = new FlushRule(mockedFlushMatcher, mockedHighCardRule);
+        PokerHandComparisonRule rule = new MatcherRuleWithSecondaryRule(mockedFlushMatcher, mockedHighCardRule);
         RuleResult result = rule.compare(hand1, hand2);
 
         assertEquals(expectedResultType, result.getType());

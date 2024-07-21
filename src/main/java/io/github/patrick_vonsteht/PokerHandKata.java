@@ -32,7 +32,7 @@ public final class PokerHandKata {
         final PokerHandComparisonRule highCardRule = new HighCardRule(highCardScorer);
 
         final FlushMatcher flushMatcher = new FlushMatcher();
-        final PokerHandComparisonRule flushRule = new FlushRule(flushMatcher, highCardRule);
+        final PokerHandComparisonRule flushRule = new MatcherRuleWithSecondaryRule(flushMatcher, highCardRule);
 
         pokerJudge = new PokerJudge(flushRule, highCardRule);
         printer = new PokerJudgeResultPrinter();
