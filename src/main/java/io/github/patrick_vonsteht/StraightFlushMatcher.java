@@ -2,16 +2,16 @@ package io.github.patrick_vonsteht;
 
 public class StraightFlushMatcher implements PokerHandMatcher {
 
-    PokerHandMatcher straightMatcher;
-    PokerHandMatcher flushMatcher;
+    private final PokerHandMatcher straightMatcher;
+    private final PokerHandMatcher flushMatcher;
 
-    public StraightFlushMatcher(PokerHandMatcher straightMatcher, PokerHandMatcher flushMatcher) {
+    public StraightFlushMatcher(final PokerHandMatcher straightMatcher, final PokerHandMatcher flushMatcher) {
         this.straightMatcher = straightMatcher;
         this.flushMatcher = flushMatcher;
     }
 
     @Override
-    public boolean matches(PokerHand hand) {
+    public boolean matches(final PokerHand hand) {
         return straightMatcher.matches(hand) && flushMatcher.matches(hand);
     }
 }

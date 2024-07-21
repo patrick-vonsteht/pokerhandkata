@@ -23,7 +23,7 @@ public class XOfAKindMatcher implements PokerHandMatcher {
         return false;
     }
 
-    private boolean hasXOfAKindStartingAtIndex(List<Integer> values, int index) {
+    private boolean hasXOfAKindStartingAtIndex(final List<Integer> values, final int index) {
         for (int i=0; i < numberOfSameCards - 1; i++) {
             if (!values.get(index+i).equals(values.get(index+i+1))) {
                 return false;
