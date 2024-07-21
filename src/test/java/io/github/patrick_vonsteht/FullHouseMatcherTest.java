@@ -21,7 +21,7 @@ class FullHouseMatcherTest {
     }
 
     @Test
-    void FulLHouseMatcherMatchesHighFullHouse() {
+    void FullHouseMatcherMatchesHighFullHouse() {
         PokerHand hand = new PokerHand(
                 new Card(CardSuit.DIAMONDS, CardValue.TWO),
                 new Card(CardSuit.HEARTS, CardValue.FOUR),
