@@ -28,13 +28,20 @@ public final class PokerHandKata {
     }
 
     private static void setup() {
-        final HighCardScorer highCardScorer = new HighCardScorer();
-        final PokerHandComparisonRule highCardRule = new HighCardRule(highCardScorer);
+        final PokerHandMatcher highCardMatcher = new XOfAKindMatcher(1);
+        final PokerHandScorer highCardScorer = new XOfAKindScorer(1);
+        final PokerHandComparisonRule highCardRule = new MatcherRuleWithScorer(highCardMatcher, highCardScorer);
+
+        final StraightMatcher straightMatcher = new StraightMatcher();
+        final PokerHandComparisonRule straightRule = new MatcherRuleWithSecondaryRule(straightMatcher, highCardRule);
 
         final FlushMatcher flushMatcher = new FlushMatcher();
         final PokerHandComparisonRule flushRule = new MatcherRuleWithSecondaryRule(flushMatcher, highCardRule);
 
-        pokerJudge = new PokerJudge(flushRule, highCardRule);
+        final StraightFlushMatcher straightFlushMatcher = new StraightFlushMatcher(straightMatcher, flushMatcher); // NOPMD Name is fine for setup code
+        final PokerHandComparisonRule straightFlushRule = new MatcherRuleWithSecondaryRule(straightFlushMatcher, highCardRule);
+
+        pokerJudge = new PokerJudge(straightFlushRule, flushRule, straightRule, highCardRule);
         printer = new PokerJudgeResultPrinter();
     }
 

@@ -80,11 +80,15 @@ class HighCardRuleTest {
 
     private void assertHighCardRuleResult(final Stream<Integer> scoresForHand1, final Stream<Integer> scoresForHand2,
                                           final RuleResultType expectedResultType, final PokerHand expectedWinner) {
+        PokerHandMatcher mockedXOfAKindMatcher = mock(PokerHandMatcher.class);
+        when(mockedXOfAKindMatcher.matches(mockedHand1)).thenReturn(true);
+        when(mockedXOfAKindMatcher.matches(mockedHand2)).thenReturn(true);
+
         PokerHandScorer mockedHighCardScorer = mock(PokerHandScorer.class);
         when(mockedHighCardScorer.score(mockedHand1)).thenReturn(scoresForHand1);
         when(mockedHighCardScorer.score(mockedHand2)).thenReturn(scoresForHand2);
 
-        HighCardRule rule = new HighCardRule(mockedHighCardScorer);
+        PokerHandComparisonRule rule = new MatcherRuleWithScorer(mockedXOfAKindMatcher, mockedHighCardScorer);
         RuleResult result = rule.compare(mockedHand1, mockedHand2);
 
         assertEquals(expectedResultType, result.getType());

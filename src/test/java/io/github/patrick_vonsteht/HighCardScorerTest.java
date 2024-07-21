@@ -26,7 +26,7 @@ class HighCardScorerTest {
                 CardValue.TWO.getNumericValue()
         );
 
-        HighCardScorer scorer = new HighCardScorer();
+        PokerHandScorer scorer = new XOfAKindScorer(1);
         List<Integer> actualScores = scorer.score(hand).toList();
 
         assertIterableEquals(expectedScores, actualScores);
