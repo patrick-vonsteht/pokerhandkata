@@ -17,7 +17,7 @@ class FourOfAKindMatcherTest {
                 new Card(CardSuit.CLUBS, CardValue.TWO)
         );
 
-        PokerHandMatcher matcher = new FourOfAKindMatcher();
+        PokerHandMatcher matcher = new XOfAKindMatcher(4);
         assertTrue(matcher.matches(hand));
     }
 
@@ -31,7 +31,7 @@ class FourOfAKindMatcherTest {
                 new Card(CardSuit.CLUBS, CardValue.FOUR)
         );
 
-        PokerHandMatcher matcher = new FourOfAKindMatcher();
+        PokerHandMatcher matcher = new XOfAKindMatcher(4);
         assertTrue(matcher.matches(hand));
     }
 
@@ -45,7 +45,7 @@ class FourOfAKindMatcherTest {
                 new Card(CardSuit.CLUBS, CardValue.FIVE)
         );
 
-        PokerHandMatcher matcher = new FourOfAKindMatcher();
+        PokerHandMatcher matcher = new XOfAKindMatcher(4);
         assertFalse(matcher.matches(hand));
     }
 
@@ -59,7 +59,7 @@ class FourOfAKindMatcherTest {
                 new Card(CardSuit.CLUBS, CardValue.FIVE)
         );
 
-        PokerHandMatcher matcher = new FourOfAKindMatcher();
+        PokerHandMatcher matcher = new XOfAKindMatcher(4);
         assertFalse(matcher.matches(hand));
     }
 }
