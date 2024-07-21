@@ -23,7 +23,7 @@ public final class RuleResult {
 
     private RuleResult(final RuleResultType type) {
         this.type = type;
-        this.winner = null; //NOPMD
+        this.winner = null;
     }
 
     public RuleResultType getType() {
