@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FlushMatcherTest {
     @Test
-    void FlushMatcherShouldMatchFlush() {
+    void FlushMatcherMatchesFlush() {
         PokerHand flushHand = new PokerHand(
                 new Card(CardSuit.CLUBS, CardValue.TWO),
                 new Card(CardSuit.CLUBS, CardValue.FOUR),
@@ -20,7 +20,7 @@ public class FlushMatcherTest {
     }
 
     @Test
-    void FlushMatcherShouldNotMatchNonFlush() {
+    void FlushMatcherDoesNotMatchNonFlush() {
         PokerHand nonFlushHand = new PokerHand(
                 new Card(CardSuit.DIAMONDS, CardValue.TWO),
                 new Card(CardSuit.CLUBS, CardValue.FOUR),
