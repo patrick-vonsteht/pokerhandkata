@@ -25,28 +25,63 @@ public class FlushRuleTest {
 
     @Test
     void FlushRuleReturnsNoMatchWhenNoHandHasFlush() {
-        assertFlushRuleResult(false, false, null, RuleResultType.NO_MATCH, null);
+        assertFlushRuleResult(
+                false,
+                false,
+                null,
+                RuleResultType.NO_MATCH,
+                null);
     }
 
     @Test
     void FlushRuleReturnsHand1WhenOnlyHand1HasFlush() {
-        assertFlushRuleResult(true, false, null, RuleResultType.WINNER_MATCH, hand1);
+        assertFlushRuleResult(
+                true,
+                false,
+                null,
+                RuleResultType.WINNER_MATCH,
+                hand1);
     }
 
     @Test
     void FlushRuleReturnsHand2WhenOnlyHand2HasFlush() {
-        assertFlushRuleResult(false, true, null, RuleResultType.WINNER_MATCH, hand2);
+        assertFlushRuleResult(
+                false,
+                true,
+                null,
+                RuleResultType.WINNER_MATCH,
+                hand2);
 
     }
 
     @Test
-    void FlushRuleReturnsHandThatWinsAccordingToHighCardRuleWhenBothHandsHaveFlush() {
-        assertFlushRuleResult(true, true, RuleResult.winnerRuleResult(hand1), RuleResultType.WINNER_MATCH, hand1);
+    void FlushRuleReturnsHand1WhenBothHandsHaveFlushAndHand1RanksHigherOnHighCardRule() {
+        assertFlushRuleResult(
+                true,
+                true,
+                RuleResult.winnerRuleResult(hand1),
+                RuleResultType.WINNER_MATCH,
+                hand1);
+    }
+
+    @Test
+    void FlushRuleReturnsHand2WhenBothHandsHaveFlushAndHand2RanksHigherOnHighCardRule() {
+        assertFlushRuleResult(
+                true,
+                true,
+                RuleResult.winnerRuleResult(hand2),
+                RuleResultType.WINNER_MATCH,
+                hand2);
     }
 
     @Test
     void FlushRuleReturnsDrawWhenBothHandsHaveFlushAndSameValues() {
-        assertFlushRuleResult(true, true, RuleResult.drawRuleResult(), RuleResultType.DRAW_MATCH, null);
+        assertFlushRuleResult(
+                true,
+                true,
+                RuleResult.drawRuleResult(),
+                RuleResultType.DRAW_MATCH,
+                null);
 
     }
 
