@@ -2,6 +2,7 @@ package io.github.patrick_vonsteht;
 
 public final class PokerHandKata {
     private static PokerJudge pokerJudge;
+    private static PokerJudgeResultPrinter printer;
 
     private static PokerHand hand1 = new PokerHand(
             new Card(CardSuit.CLUBS, CardValue.TWO),
@@ -29,22 +30,16 @@ public final class PokerHandKata {
     private static void setup() {
         final HighCardScorer highCardScorer = new HighCardScorer();
         final PokerHandComparisonRule highCardRule = new HighCardRule(highCardScorer);
+
         final FlushMatcher flushMatcher = new FlushMatcher();
         final PokerHandComparisonRule flushRule = new FlushRule(flushMatcher, highCardRule);
+
         pokerJudge = new PokerJudge(flushRule, highCardRule);
+        printer = new PokerJudgeResultPrinter();
     }
 
     private static void run() {
         final PokerJudgeResult result = pokerJudge.judge(hand1, hand2);
-
-        if (result.getType() == PokerJudgeResultType.WINNER) {
-            if (result.getWinner().equals(hand1)) {
-                System.out.println("Hand1 has won!");
-            } else {
-                System.out.println("Hand2 has won!");
-            }
-        } else {
-            System.out.println("Draw between hand1 and hand2!");
-        }
+        printer.print(result, hand1, hand2);
     }
 }
