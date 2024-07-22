@@ -100,7 +100,7 @@ class XOfAKindScorerTest {
                 new Card(CardSuit.HEARTS, handValues.get(4))
         );
 
-        List<Integer> expectedScoreValues = expectedScores.stream().map(CardValue::getNumericValue).toList();
+        List<Integer> expectedScoreValues = expectedScores.stream().map(CardValue::numericValue).toList();
 
         PokerHandScorer scorer = new XOfAKindScorer(matchLength, minMatches, maxMatches);
         List<Integer> actualScores = scorer.score(hand).toList();

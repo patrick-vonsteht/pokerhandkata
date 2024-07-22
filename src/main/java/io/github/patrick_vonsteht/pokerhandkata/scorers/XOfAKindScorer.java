@@ -21,7 +21,7 @@ public class XOfAKindScorer implements PokerHandScorer {
     @Override
     public Stream<Integer> score(final PokerHand hand) {
         final var cardsByMatchAndValue = hand.stream()
-                .collect(Collectors.groupingBy(Card::getNumericValue))
+                .collect(Collectors.groupingBy(Card::numericValue))
                 .entrySet()
                 .stream()
                 .collect(Collectors.teeing(
@@ -47,7 +47,7 @@ public class XOfAKindScorer implements PokerHandScorer {
         final Stream<Integer> nonMatchScores = nonMatchesByValue.stream()
                 .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
                 .flatMap(e -> e.getValue().stream())
-                .map(Card::getNumericValue);
+                .map(Card::numericValue);
 
         return Stream.concat(matchScores, nonMatchScores);
     }

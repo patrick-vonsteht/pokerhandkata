@@ -15,13 +15,13 @@ public enum CardValue {
     KING(13),
     ACE(14);
 
-    private final int numericValue;
+    private final int value;
 
-    CardValue(final int numericValue) {
-        this.numericValue = numericValue;
+    CardValue(final int value) {
+        this.value = value;
     }
 
-    public int getNumericValue() {
-        return this.numericValue;
+    public int numericValue() {
+        return this.value;
     }
 }

@@ -10,7 +10,7 @@ public class StraightMatcher implements PokerHandMatcher {
     @Override
     public boolean matches(final PokerHand hand) {
         final List<Integer> sortedCardValues = hand.stream()
-                .map(Card::getNumericValue)
+                .map(Card::numericValue)
                 .sorted()
                 .toList();
 

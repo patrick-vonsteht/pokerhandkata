@@ -20,7 +20,7 @@ public class XOfAKindMatcher implements PokerHandMatcher {
     @Override
     public boolean matches(final PokerHand hand) {
         final long numMatches = hand.stream()
-                .collect(Collectors.groupingBy(Card::getNumericValue, Collectors.counting()))
+                .collect(Collectors.groupingBy(Card::numericValue, Collectors.counting()))
                 .entrySet()
                 .stream()
                 .filter(e -> e.getValue() == matchLength)
