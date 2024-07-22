@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 
 public class FlushRuleTest {
 
-    private final PokerHand hand1 = new PokerHand(
+    private final PokerHand hand1 = PokerHand.fromCards(
         new Card(CardSuit.DIAMONDS, CardValue.TWO),
         new Card(CardSuit.CLUBS, CardValue.FOUR),
         new Card(CardSuit.SPADES, CardValue.JACK),
@@ -17,7 +17,7 @@ public class FlushRuleTest {
         new Card(CardSuit.HEARTS, CardValue.SIX)
     );
 
-    private final PokerHand hand2 = new PokerHand(
+    private final PokerHand hand2 = PokerHand.fromCards(
             new Card(CardSuit.DIAMONDS, CardValue.TWO),
             new Card(CardSuit.CLUBS, CardValue.FOUR),
             new Card(CardSuit.SPADES, CardValue.JACK),

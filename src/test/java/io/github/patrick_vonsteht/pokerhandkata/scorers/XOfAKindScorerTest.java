@@ -78,7 +78,7 @@ class XOfAKindScorerTest {
 
     @Test
     void XOfAKindScorerThrowsExceptionOnWrongNumberOfMatches() {
-        final PokerHand hand = new PokerHand(
+        final PokerHand hand = PokerHand.fromCards(
                 new Card(CardSuit.DIAMONDS, CardValue.TWO),
                 new Card(CardSuit.CLUBS, CardValue.FOUR),
                 new Card(CardSuit.SPADES, CardValue.JACK),
@@ -92,7 +92,7 @@ class XOfAKindScorerTest {
 
     private void assertScorerResult(int matchLength, int minMatches, int maxMatches, List<CardValue> handValues,
                                     List<CardValue> expectedScores) {
-        final PokerHand hand = new PokerHand(
+        final PokerHand hand = PokerHand.fromCards(
                 new Card(CardSuit.DIAMONDS, handValues.get(0)),
                 new Card(CardSuit.CLUBS, handValues.get(1)),
                 new Card(CardSuit.SPADES, handValues.get(2)),

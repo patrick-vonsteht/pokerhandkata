@@ -13,6 +13,10 @@ public final class RuleResult {
     }
 
     public static RuleResult winnerRuleResult(final PokerHand winner) {
+        if (winner == null) {
+            throw new IllegalArgumentException("Winner must not be null on a winnerRuleResult.");
+        }
+
         return new RuleResult(RuleResultType.WINNER_MATCH, winner);
     }
 
