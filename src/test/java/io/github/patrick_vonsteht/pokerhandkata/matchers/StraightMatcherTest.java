@@ -1,7 +1,5 @@
 package io.github.patrick_vonsteht.pokerhandkata.matchers;
 
-import io.github.patrick_vonsteht.pokerhandkata.model.Card;
-import io.github.patrick_vonsteht.pokerhandkata.model.CardSuit;
 import io.github.patrick_vonsteht.pokerhandkata.model.CardValue;
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 import org.junit.jupiter.api.Test;
@@ -34,23 +32,14 @@ public class StraightMatcherTest {
     }
 
     private void assertMatches(List<CardValue> handValues) {
-        PokerHand hand = createHand(handValues);
+        PokerHand hand = PokerHandTestHelper.createHandFromValues(handValues);
         StraightMatcher matcher = new StraightMatcher();
         assertTrue(matcher.matches(hand));
     }
 
     private void assertDoesNotMatch(List<CardValue> handValues) {
-        PokerHand hand = createHand(handValues);
+        PokerHand hand = PokerHandTestHelper.createHandFromValues(handValues);
         StraightMatcher matcher = new StraightMatcher();
         assertFalse(matcher.matches(hand));
-    }
-
-    private PokerHand createHand(List<CardValue> handValues) {
-        return new PokerHand(
-                new Card(CardSuit.DIAMONDS, handValues.get(0)),
-                new Card(CardSuit.CLUBS, handValues.get(1)),
-                new Card(CardSuit.SPADES, handValues.get(2)),
-                new Card(CardSuit.CLUBS, handValues.get(3)),
-                new Card(CardSuit.HEARTS, handValues.get(4)));
     }
 }
