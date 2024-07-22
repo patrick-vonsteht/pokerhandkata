@@ -31,6 +31,11 @@ public final class RuleResult {
     }
 
     public PokerHand getWinner() {
+        if (this.type == RuleResultType.NO_MATCH || this.type == RuleResultType.DRAW_MATCH) {
+            throw new UnsupportedOperationException("Invalid call to RuleResult.getWinner(). Only RuleResults with " +
+                    "type WINNER_MATCH support getWinner.");
+        }
+
         return winner;
     }
 }

@@ -98,6 +98,9 @@ class HighCardRuleTest {
         RuleResult result = rule.compare(mockedHand1, mockedHand2);
 
         assertEquals(expectedResultType, result.getType());
-        assertEquals(expectedWinner, result.getWinner());
+
+        if (result.getType() == RuleResultType.WINNER_MATCH) {
+            assertEquals(expectedWinner, result.getWinner());
+        }
     }
 }

@@ -2,7 +2,6 @@ package io.github.patrick_vonsteht.pokerhandkata.rules;
 
 import io.github.patrick_vonsteht.pokerhandkata.matchers.PokerHandMatcher;
 import io.github.patrick_vonsteht.pokerhandkata.model.*;
-import io.github.patrick_vonsteht.pokerhandkata.scorers.PokerHandScorer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -101,6 +100,9 @@ public class FlushRuleTest {
         RuleResult result = rule.compare(hand1, hand2);
 
         assertEquals(expectedResultType, result.getType());
-        assertEquals(expectedWinner, result.getWinner());
+
+        if (result.getType() == RuleResultType.WINNER_MATCH) {
+            assertEquals(expectedWinner, result.getWinner());
+        }
     }
 }
