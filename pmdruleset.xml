@@ -27,6 +27,14 @@
     <rule ref="category/java/codestyle.xml">
         <exclude name="OnlyOneReturn"/>
         <exclude name="AtLeastOneConstructor"/>
+        <exclude name="LongVariable"/>
+        <exclude name="UseExplicitTypes"/>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="20" />
+        </properties>
     </rule>
 
     <rule ref="category/java/errorprone.xml"/>
