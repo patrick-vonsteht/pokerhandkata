@@ -7,11 +7,11 @@ import io.github.patrick_vonsteht.pokerhandkata.scorers.PokerHandScorer;
 
 import java.util.Iterator;
 
-public class MatcherRuleWithScorer implements PokerHandComparisonRule {
+public class MatchThenScoreRule implements PokerHandComparisonRule {
     private final PokerHandMatcher matcher;
     private final PokerHandScorer scorer;
 
-    public MatcherRuleWithScorer(final PokerHandMatcher matcher, final PokerHandScorer scorer) {
+    public MatchThenScoreRule(final PokerHandMatcher matcher, final PokerHandScorer scorer) {
         this.matcher = matcher;
         this.scorer = scorer;
     }

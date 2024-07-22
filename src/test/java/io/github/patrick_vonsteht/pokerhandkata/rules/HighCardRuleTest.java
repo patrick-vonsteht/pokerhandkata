@@ -94,7 +94,7 @@ class HighCardRuleTest {
         when(mockedHighCardScorer.score(mockedHand1)).thenReturn(scoresForHand1);
         when(mockedHighCardScorer.score(mockedHand2)).thenReturn(scoresForHand2);
 
-        PokerHandComparisonRule rule = new MatcherRuleWithScorer(mockedXOfAKindMatcher, mockedHighCardScorer);
+        PokerHandComparisonRule rule = new MatchThenScoreRule(mockedXOfAKindMatcher, mockedHighCardScorer);
         RuleResult result = rule.compare(mockedHand1, mockedHand2);
 
         assertEquals(expectedResultType, result.getType());
