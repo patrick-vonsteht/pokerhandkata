@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class AndMatcherTest {
-
     private static final PokerHand mockedHand = mock(PokerHand.class);
 
     private static final PokerHandMatcher mockedMatchingRule = mock(PokerHandMatcher.class);
@@ -21,46 +20,46 @@ public class AndMatcherTest {
     }
 
     @Test
-    void AndMatcherWithoutRulesMatches() {
-        assertAndMatcherMatches();
+    void MatchesWithoutRules() {
+        assertMatches();
     }
 
     @Test
-    void AndMatcherWithMatchingRuleMatches() {
-        assertAndMatcherMatches(mockedMatchingRule);
+    void MatchesWithOneMatchingRule() {
+        assertMatches(mockedMatchingRule);
     }
 
     @Test
-    void AndMatcherWithNonMatchingRuleDoesNotMatch() {
-        assertAndMatcherDoesNotMatch(mockedNonMatchingRule);
+    void DoesNotMatchWithOneNonMatchingRule() {
+        assertDoesNotMatch(mockedNonMatchingRule);
     }
 
     @Test
-    void AndMatcherWithTwoMatchingRulesMatches() {
-        assertAndMatcherMatches(mockedMatchingRule, mockedMatchingRule);
+    void MatchesWithTwoMatchingRules() {
+        assertMatches(mockedMatchingRule, mockedMatchingRule);
     }
 
     @Test
-    void AndMatcherWithTwoNonMatchingRulesDoesNotMatch() {
-        assertAndMatcherDoesNotMatch(mockedNonMatchingRule, mockedNonMatchingRule);
+    void DoesNotMatchWithTwoNonMatchingRules() {
+        assertDoesNotMatch(mockedNonMatchingRule, mockedNonMatchingRule);
     }
 
     @Test
-    void AndMatcherWithOneMatchingAndOneNonMatchingRuleDoesNotMatch() {
-        assertAndMatcherDoesNotMatch(mockedMatchingRule, mockedNonMatchingRule);
+    void DoesNotMatchWithOneMatchingAndOneNonMatchingRule() {
+        assertDoesNotMatch(mockedMatchingRule, mockedNonMatchingRule);
     }
 
     @Test
-    void AndMatcherWithOneNonMatchingAndOneMatchingRuleDoesNotMatch() {
-        assertAndMatcherDoesNotMatch(mockedNonMatchingRule, mockedMatchingRule);
+    void DoesNotMatchWithOneNonMatchingAndOneMatchingRule() {
+        assertDoesNotMatch(mockedNonMatchingRule, mockedMatchingRule);
     }
 
-    void assertAndMatcherMatches(PokerHandMatcher... matchers) {
+    void assertMatches(PokerHandMatcher... matchers) {
         PokerHandMatcher andMatcher = new AndMatcher(matchers);
         assertTrue(andMatcher.matches(mockedHand));
     }
 
-    void assertAndMatcherDoesNotMatch(PokerHandMatcher... matchers) {
+    void assertDoesNotMatch(PokerHandMatcher... matchers) {
         PokerHandMatcher andMatcher = new AndMatcher(matchers);
         assertFalse(andMatcher.matches(mockedHand));
     }
