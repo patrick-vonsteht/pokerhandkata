@@ -9,14 +9,14 @@ public class StraightMatcher implements PokerHandMatcher {
 
     @Override
     public boolean matches(final PokerHand hand) {
-        final List<Integer> cardValues = hand.stream()
+        final List<Integer> sortedCardValues = hand.stream()
                 .map(Card::getNumericValue)
                 .sorted()
                 .toList();
 
-        for (int i=0; i < cardValues.size() - 1; i++) {
-            final int currentCardValue = cardValues.get(i);
-            final int nextCardValue = cardValues.get(i+1);
+        for (int i=0; i < sortedCardValues.size() - 1; i++) {
+            final int currentCardValue = sortedCardValues.get(i);
+            final int nextCardValue = sortedCardValues.get(i+1);
 
             if (!areConsecutiveValues(currentCardValue, nextCardValue)) {
                 return false;
