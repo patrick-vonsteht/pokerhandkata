@@ -6,64 +6,51 @@ import io.github.patrick_vonsteht.pokerhandkata.model.CardValue;
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StraightMatcherTest {
 
     @Test
-    void StraightMatcherMatchesLowestStraight() {
-        PokerHand hand = new PokerHand(
-            new Card(CardSuit.DIAMONDS, CardValue.TWO),
-            new Card(CardSuit.HEARTS, CardValue.THREE),
-            new Card(CardSuit.SPADES, CardValue.FIVE),
-            new Card(CardSuit.CLUBS, CardValue.FOUR),
-            new Card(CardSuit.CLUBS, CardValue.SIX)
-        );
+    void MatchesLowestStraight() {
+        assertMatches(List.of(CardValue.TWO, CardValue.THREE, CardValue.FIVE, CardValue.FOUR, CardValue.SIX));
+    }
 
+    @Test
+    void MatchesMiddleStraight() {
+        assertMatches(List.of(CardValue.FIVE, CardValue.SEVEN, CardValue.SIX, CardValue.EIGHT, CardValue.NINE));
+    }
+
+    @Test
+    void MatchesHighestStraight() {
+        assertMatches(List.of(CardValue.ACE, CardValue.QUEEN, CardValue.KING, CardValue.JACK, CardValue.TEN));
+    }
+
+    @Test
+    void DoesNotMatchNonStraight() {
+        assertDoesNotMatch(List.of(CardValue.TWO, CardValue.QUEEN, CardValue.SIX, CardValue.JACK, CardValue.NINE));
+    }
+
+    private void assertMatches(List<CardValue> handValues) {
+        PokerHand hand = createHand(handValues);
         StraightMatcher matcher = new StraightMatcher();
         assertTrue(matcher.matches(hand));
     }
 
-    @Test
-    void StraightMatcherMatchesMiddleStraight() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.FIVE),
-                new Card(CardSuit.HEARTS, CardValue.SEVEN),
-                new Card(CardSuit.SPADES, CardValue.SIX),
-                new Card(CardSuit.CLUBS, CardValue.EIGHT),
-                new Card(CardSuit.CLUBS, CardValue.NINE)
-        );
-
-        StraightMatcher matcher = new StraightMatcher();
-        assertTrue(matcher.matches(hand));
-    }
-
-    @Test
-    void StraightMatcherMatchesHighestStraight() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.ACE),
-                new Card(CardSuit.HEARTS, CardValue.QUEEN),
-                new Card(CardSuit.SPADES, CardValue.KING),
-                new Card(CardSuit.CLUBS, CardValue.JACK),
-                new Card(CardSuit.CLUBS, CardValue.TEN)
-        );
-
-        StraightMatcher matcher = new StraightMatcher();
-        assertTrue(matcher.matches(hand));
-    }
-
-    @Test
-    void StraightMatcherDoesNotMatchNonStraight() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.TWO),
-                new Card(CardSuit.HEARTS, CardValue.QUEEN),
-                new Card(CardSuit.SPADES, CardValue.SIX),
-                new Card(CardSuit.CLUBS, CardValue.JACK),
-                new Card(CardSuit.CLUBS, CardValue.NINE)
-        );
-
+    private void assertDoesNotMatch(List<CardValue> handValues) {
+        PokerHand hand = createHand(handValues);
         StraightMatcher matcher = new StraightMatcher();
         assertFalse(matcher.matches(hand));
+    }
+
+    private PokerHand createHand(List<CardValue> handValues) {
+        return new PokerHand(
+                new Card(CardSuit.DIAMONDS, handValues.get(0)),
+                new Card(CardSuit.CLUBS, handValues.get(1)),
+                new Card(CardSuit.SPADES, handValues.get(2)),
+                new Card(CardSuit.CLUBS, handValues.get(3)),
+                new Card(CardSuit.HEARTS, handValues.get(4)));
     }
 }
