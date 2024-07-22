@@ -6,6 +6,7 @@ import io.github.patrick_vonsteht.pokerhandkata.model.RuleResult;
 import io.github.patrick_vonsteht.pokerhandkata.scorers.PokerHandScorer;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 public class MatchThenScoreRule implements PokerHandComparisonRule {
     private final PokerHandMatcher matcher;
@@ -18,6 +19,23 @@ public class MatchThenScoreRule implements PokerHandComparisonRule {
 
     @Override
     public RuleResult compare(final PokerHand hand1, final PokerHand hand2) {
+
+        final Optional<RuleResult> matchingResult = compareByMatching(hand1, hand2);
+
+        if (matchingResult.isPresent()) {
+            return matchingResult.get();
+        }
+
+        final Optional<RuleResult> scoringResult = compareByScoring(hand1, hand2);
+
+        if (scoringResult.isPresent()) {
+            return scoringResult.get();
+        }
+
+        return RuleResult.drawRuleResult();
+    }
+
+    private Optional<RuleResult> compareByMatching(final PokerHand hand1, final PokerHand hand2) {
         final boolean hand1Matches = matcher.matches(hand1);
         final boolean hand2Matches = matcher.matches(hand2);
 
@@ -26,17 +44,21 @@ public class MatchThenScoreRule implements PokerHandComparisonRule {
         final boolean onlyHand2Matches = !hand1Matches && hand2Matches;
 
         if (noHandMatches) {
-            return RuleResult.noMatchRuleResult();
+            return Optional.of(RuleResult.noMatchRuleResult());
         }
 
         if (onlyHand1Matches) {
-            return RuleResult.winnerRuleResult(hand1);
+            return Optional.of(RuleResult.winnerRuleResult(hand1));
         }
 
         if (onlyHand2Matches) {
-            return RuleResult.winnerRuleResult(hand2);
+            return Optional.of(RuleResult.winnerRuleResult(hand2));
         }
 
+        return Optional.empty();
+    }
+
+    private Optional<RuleResult> compareByScoring(final PokerHand hand1, final PokerHand hand2) {
         final Iterator<Integer> scores1 = scorer.score(hand1).iterator();
         final Iterator<Integer> scores2 = scorer.score(hand2).iterator();
 
@@ -45,14 +67,20 @@ public class MatchThenScoreRule implements PokerHandComparisonRule {
             final int score2 = scores2.next();
 
             if (score1 > score2) {
-                return RuleResult.winnerRuleResult(hand1);
+                return Optional.of(RuleResult.winnerRuleResult(hand1));
             }
 
             if (score1 < score2) {
-                return RuleResult.winnerRuleResult(hand2);
+                return Optional.of(RuleResult.winnerRuleResult(hand2));
             }
         }
 
-        return RuleResult.drawRuleResult();
+        if (scores1.hasNext() || scores2.hasNext()) {
+            throw new UnsupportedOperationException("Hand1 has a different number of scores than hand2. With " +
+                    "standard poker rules there's no way to handle this and this should not happen. This is likely " +
+                    "an implementation bug.");
+        }
+
+        return Optional.empty();
     }
 }
