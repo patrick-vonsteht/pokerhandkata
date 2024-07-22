@@ -77,7 +77,7 @@ class XOfAKindScorerTest {
     }
 
     @Test
-    void XOfAKindScorerThrowsExceptionOnWrongNumberOfMatches() {
+    void XOfAKindScorerThrowsExceptionWhenTooManyMatches() {
         final PokerHand hand = PokerHand.fromCards(
                 new Card(CardSuit.DIAMONDS, CardValue.TWO),
                 new Card(CardSuit.CLUBS, CardValue.FOUR),
@@ -87,6 +87,20 @@ class XOfAKindScorerTest {
         );
 
         PokerHandScorer scorer = new XOfAKindScorer(1, 1, 1);
+        assertThrows(IllegalArgumentException.class, () -> scorer.score(hand));
+    }
+
+    @Test
+    void XOfAKindScorerThrowsExceptionWhenTooFewMatches() {
+        final PokerHand hand = PokerHand.fromCards(
+                new Card(CardSuit.DIAMONDS, CardValue.TWO),
+                new Card(CardSuit.CLUBS, CardValue.FOUR),
+                new Card(CardSuit.SPADES, CardValue.JACK),
+                new Card(CardSuit.CLUBS, CardValue.KING),
+                new Card(CardSuit.HEARTS, CardValue.SIX)
+        );
+
+        PokerHandScorer scorer = new XOfAKindScorer(2, 1, 1);
         assertThrows(IllegalArgumentException.class, () -> scorer.score(hand));
     }
 
