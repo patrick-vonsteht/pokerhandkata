@@ -2,77 +2,60 @@ package io.github.patrick_vonsteht;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FullHouseMatcherTest {
 
     @Test
     void FullHouseMatcherMatchesLowFullHouse() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.TWO),
-                new Card(CardSuit.HEARTS, CardValue.FOUR),
-                new Card(CardSuit.SPADES, CardValue.TWO),
-                new Card(CardSuit.CLUBS, CardValue.TWO),
-                new Card(CardSuit.CLUBS, CardValue.FOUR)
-        );
-
-        PokerHandMatcher matcher = new FullHouseMatcher();
-        assertTrue(matcher.matches(hand));
+        assertFullHouseMatcherResult(
+                List.of(CardValue.TWO, CardValue.FOUR, CardValue.TWO, CardValue.TWO, CardValue.FOUR),
+                true);
     }
 
     @Test
     void FullHouseMatcherMatchesHighFullHouse() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.TWO),
-                new Card(CardSuit.HEARTS, CardValue.FOUR),
-                new Card(CardSuit.SPADES, CardValue.TWO),
-                new Card(CardSuit.CLUBS, CardValue.FOUR),
-                new Card(CardSuit.CLUBS, CardValue.FOUR)
-        );
-
-        PokerHandMatcher matcher = new FullHouseMatcher();
-        assertTrue(matcher.matches(hand));
+        assertFullHouseMatcherResult(
+                List.of(CardValue.TWO, CardValue.FOUR, CardValue.TWO, CardValue.FOUR, CardValue.FOUR),
+                true);
     }
 
     @Test
     void FullHouseMatcherDoesNotMatchNonFullHouseThreeOfAKind() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.THREE),
-                new Card(CardSuit.HEARTS, CardValue.FOUR),
-                new Card(CardSuit.SPADES, CardValue.FOUR),
-                new Card(CardSuit.CLUBS, CardValue.FOUR),
-                new Card(CardSuit.CLUBS, CardValue.FIVE)
-        );
-
-        PokerHandMatcher matcher = new FullHouseMatcher();
-        assertFalse(matcher.matches(hand));
+        assertFullHouseMatcherResult(
+                List.of(CardValue.THREE, CardValue.FOUR, CardValue.FOUR, CardValue.FOUR, CardValue.FIVE),
+                false);
     }
 
     @Test
     void FullHouseMatcherDoesNotMatchNonFullHouseTwoOfAKind() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.JACK),
-                new Card(CardSuit.HEARTS, CardValue.JACK),
-                new Card(CardSuit.SPADES, CardValue.THREE),
-                new Card(CardSuit.CLUBS, CardValue.FOUR),
-                new Card(CardSuit.CLUBS, CardValue.FIVE)
-        );
-
-        PokerHandMatcher matcher = new FullHouseMatcher();
-        assertFalse(matcher.matches(hand));
+        assertFullHouseMatcherResult(
+                List.of(CardValue.JACK, CardValue.JACK, CardValue.THREE, CardValue.FOUR, CardValue.FIVE),
+                false);
     }
 
     @Test
     void FullHouseMatcherDoesNotMatchNonFullHouse() {
-        PokerHand hand = new PokerHand(
-                new Card(CardSuit.DIAMONDS, CardValue.QUEEN),
-                new Card(CardSuit.HEARTS, CardValue.JACK),
-                new Card(CardSuit.SPADES, CardValue.THREE),
-                new Card(CardSuit.CLUBS, CardValue.NINE),
-                new Card(CardSuit.CLUBS, CardValue.FIVE)
+        assertFullHouseMatcherResult(
+                List.of(CardValue.QUEEN, CardValue.JACK, CardValue.THREE, CardValue.NINE, CardValue.FIVE),
+                false);
+    }
+
+    private void assertFullHouseMatcherResult(List<CardValue> handValues, boolean expectedResult) {
+        final PokerHand hand = new PokerHand(
+                new Card(CardSuit.DIAMONDS, handValues.get(0)),
+                new Card(CardSuit.CLUBS, handValues.get(1)),
+                new Card(CardSuit.SPADES, handValues.get(2)),
+                new Card(CardSuit.CLUBS, handValues.get(3)),
+                new Card(CardSuit.HEARTS, handValues.get(4))
         );
 
-        PokerHandMatcher matcher = new FullHouseMatcher();
-        assertFalse(matcher.matches(hand));
+        final PokerHandMatcher threeOfAKindMatcher = new XOfAKindMatcher(3, 1, 1);
+        final PokerHandMatcher twoOfAKindMatcher = new XOfAKindMatcher(2, 1, 1);
+        final PokerHandMatcher fullHouseMatcher = new AndMatcher(threeOfAKindMatcher, twoOfAKindMatcher);
+
+        assertEquals(expectedResult, fullHouseMatcher.matches(hand));
     }
 }

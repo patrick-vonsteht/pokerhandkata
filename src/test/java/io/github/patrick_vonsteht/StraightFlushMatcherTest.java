@@ -59,9 +59,10 @@ class StraightFlushMatcherTest {
     }
 
     private void assertStraightFlushMatcherResult(PokerHand hand, boolean expectedResult) {
-        StraightMatcher straightMatcher = new StraightMatcher();
-        FlushMatcher flushMatcher = new FlushMatcher();
-        StraightFlushMatcher m = new StraightFlushMatcher(straightMatcher, flushMatcher);
-        assertEquals(expectedResult, m.matches(hand));
+        final PokerHandMatcher straightMatcher = new StraightMatcher();
+        final PokerHandMatcher flushMatcher = new FlushMatcher();
+        final PokerHandMatcher straightFlushMatcher = new AndMatcher(straightMatcher, flushMatcher);
+
+        assertEquals(expectedResult, straightFlushMatcher.matches(hand));
     }
 }
