@@ -27,6 +27,11 @@ public final class PokerJudgeResult {
     }
 
     public PokerHand getWinner() {
+        if (this.type == PokerJudgeResultType.DRAW) {
+            throw new UnsupportedOperationException("Invalid call to PokerJudgeResults.getWinner(). Only " +
+                    "PokerJudgeResults with type WINNER support getWinner.");
+        }
+
         return winner;
     }
 }
