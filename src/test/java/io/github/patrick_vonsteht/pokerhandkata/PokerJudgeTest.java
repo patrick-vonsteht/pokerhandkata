@@ -31,82 +31,55 @@ class PokerJudgeTest {
 
     @Test
     void PokerJudgeReturnsDrawWhenNoRulesAreConfigured() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.DRAW,
-                null);
+        assertDraw();
     }
 
     @Test
     void PokerJudgeReturnsDrawWhenNoRuleMatches() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.DRAW,
-                null,
-                notMatchingRule);
+        assertDraw(notMatchingRule);
     }
 
     @Test
     void PokerJudgeReturnsHand1WhenHand1WinsFirstRule() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.WINNER,
-                mockedHand1,
-                hand1WinningRule
-        );
+        assertWinner(mockedHand1, hand1WinningRule);
     }
 
     @Test
     void PokerJudgeReturnsHand2WhenHand2WinsFirstRule() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.WINNER,
-                mockedHand2,
-                hand2WinningRule
-        );
+        assertWinner(mockedHand2, hand2WinningRule);
     }
 
     @Test
     void PokerJudgeReturnsDrawWhenFirstRuleReturnsDraw() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.DRAW,
-                null,
-                drawRule
-        );
+        assertDraw(drawRule);
     }
 
     @Test
     void PokerJudgeReturnsHand1WhenFirstRuleDoesNotMatchAndHand1WinsSecondRule() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.WINNER,
-                mockedHand1,
-                notMatchingRule,
-                hand1WinningRule
-        );
+        assertWinner(mockedHand1, notMatchingRule, hand1WinningRule);
     }
 
     @Test
     void PokerJudgeReturnsHand2WhenFirstRuleDoesNotMatchAndHand2WinsSecondRule() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.WINNER,
-                mockedHand2,
-                notMatchingRule,
-                hand2WinningRule
-        );
+        assertWinner(mockedHand2, notMatchingRule, hand2WinningRule);
     }
 
     @Test
     void PokerJudgeReturnsDrawWhenFirstRuleDoesNotMatchAndSecondRuleReturnsDraw() {
-        assertPokerJudgeResult(
-                PokerJudgeResultType.DRAW,
-                null,
-                notMatchingRule,
-                drawRule
-        );
+        assertDraw(notMatchingRule, drawRule);
     }
 
-    private void assertPokerJudgeResult(final PokerJudgeResultType expectedType, final PokerHand expectedWinner,
-                                        final PokerHandComparisonRule... rules) {
+    private void assertDraw(PokerHandComparisonRule... rules) {
+        PokerJudge judge = new PokerJudge(rules);
+        PokerJudgeResult result = judge.judge(mockedHand1, mockedHand2);
+        assertEquals(PokerJudgeResultType.DRAW, result.getType());
+    }
+
+    private void assertWinner(PokerHand winner, PokerHandComparisonRule... rules) {
         PokerJudge judge = new PokerJudge(rules);
         PokerJudgeResult result = judge.judge(mockedHand1, mockedHand2);
 
-        assertEquals(expectedType, result.getType());
-        assertEquals(expectedWinner, result.getWinner());
+        assertEquals(PokerJudgeResultType.WINNER, result.getType());
+        assertEquals(winner, result.getWinner());
     }
 }
