@@ -29,4 +29,13 @@ public final class PokerHandTestHelper {
                 new Card(CardSuit.CLUBS, handValues.get(3)),
                 new Card(CardSuit.HEARTS, handValues.get(4)));
     }
+
+    public static PokerHand createHandFromSuitsAndValues(List<CardSuit> handSuits, List<CardValue> handValues) {
+        return new PokerHand(
+                new Card(handSuits.get(0), handValues.get(0)),
+                new Card(handSuits.get(1), handValues.get(1)),
+                new Card(handSuits.get(2), handValues.get(2)),
+                new Card(handSuits.get(3), handValues.get(3)),
+                new Card(handSuits.get(4), handValues.get(4)));
+    }
 }
