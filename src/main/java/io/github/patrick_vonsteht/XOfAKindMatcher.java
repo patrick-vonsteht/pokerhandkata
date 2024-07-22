@@ -1,34 +1,28 @@
 package io.github.patrick_vonsteht;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class XOfAKindMatcher implements PokerHandMatcher {
 
-    private final int numberOfSameCards;
+    private final int matchLength;
+    private final int minMatches;
+    private final int maxMatches;
 
-    public XOfAKindMatcher(final int numberOfSameCards) {
-        this.numberOfSameCards = numberOfSameCards;
+    public XOfAKindMatcher(final int matchLength, final int minMatches, final int maxMatches) {
+        this.matchLength = matchLength;
+        this.minMatches = minMatches;
+        this.maxMatches = maxMatches;
     }
 
     @Override
     public boolean matches(final PokerHand hand) {
-        final List<Integer> values = hand.stream().map(Card::getNumericValue).sorted().toList();
+        final long numMatches = hand.stream()
+                .collect(Collectors.groupingBy(Card::getNumericValue, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue() == matchLength)
+                .count();
 
-        for (int i=0; i <= values.size() - numberOfSameCards; i++) {
-            if (hasXOfAKindStartingAtIndex(values, i)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean hasXOfAKindStartingAtIndex(final List<Integer> values, final int index) {
-        for (int i=0; i < numberOfSameCards - 1; i++) {
-            if (!values.get(index+i).equals(values.get(index+i+1))) {
-                return false;
-            }
-        }
-        return true;
+        return numMatches >= minMatches && numMatches <= maxMatches;
     }
 }
