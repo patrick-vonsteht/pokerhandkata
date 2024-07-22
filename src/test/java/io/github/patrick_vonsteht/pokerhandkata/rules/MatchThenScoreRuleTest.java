@@ -51,7 +51,7 @@ class MatchThenScoreRuleTest {
     void ReturnsHand2WhenBothHandsMatchFirstScoreIsEqualAndHand2HasHigherSecondScore() {
         assertWinner(true, true, Stream.of(5, 4), Stream.of(5, 5), mockedHand2);
     }
-    
+
     @Test
     void ThrowsUnsupportedOperationExceptionWhenBothHandsMatchFirstScoresAreEqualAndHand1HasMoreScores() {
         assertUnsupportedOperationException(true, true, Stream.of(5, 4, 3), Stream.of(5, 4));
