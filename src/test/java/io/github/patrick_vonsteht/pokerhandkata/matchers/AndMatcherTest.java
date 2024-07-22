@@ -22,37 +22,46 @@ public class AndMatcherTest {
 
     @Test
     void AndMatcherWithoutRulesMatches() {
-        PokerHandMatcher andMatcher = new AndMatcher();
-        assertTrue(andMatcher.matches(mockedHand));
+        assertAndMatcherMatches();
     }
 
     @Test
     void AndMatcherWithMatchingRuleMatches() {
-        PokerHandMatcher andMatcher = new AndMatcher(mockedMatchingRule);
-        assertTrue(andMatcher.matches(mockedHand));
+        assertAndMatcherMatches(mockedMatchingRule);
     }
 
     @Test
     void AndMatcherWithNonMatchingRuleDoesNotMatch() {
-        PokerHandMatcher andMatcher = new AndMatcher(mockedNonMatchingRule);
-        assertFalse(andMatcher.matches(mockedHand));
+        assertAndMatcherDoesNotMatch(mockedNonMatchingRule);
     }
 
     @Test
     void AndMatcherWithTwoMatchingRulesMatches() {
-        PokerHandMatcher andMatcher = new AndMatcher(mockedMatchingRule, mockedMatchingRule);
-        assertTrue(andMatcher.matches(mockedHand));
+        assertAndMatcherMatches(mockedMatchingRule, mockedMatchingRule);
     }
 
     @Test
     void AndMatcherWithTwoNonMatchingRulesDoesNotMatch() {
-        PokerHandMatcher andMatcher = new AndMatcher(mockedNonMatchingRule, mockedNonMatchingRule);
-        assertFalse(andMatcher.matches(mockedHand));
+        assertAndMatcherDoesNotMatch(mockedNonMatchingRule, mockedNonMatchingRule);
     }
 
     @Test
     void AndMatcherWithOneMatchingAndOneNonMatchingRuleDoesNotMatch() {
-        PokerHandMatcher andMatcher = new AndMatcher(mockedMatchingRule, mockedNonMatchingRule);
+        assertAndMatcherDoesNotMatch(mockedMatchingRule, mockedNonMatchingRule);
+    }
+
+    @Test
+    void AndMatcherWithOneNonMatchingAndOneMatchingRuleDoesNotMatch() {
+        assertAndMatcherDoesNotMatch(mockedNonMatchingRule, mockedMatchingRule);
+    }
+
+    void assertAndMatcherMatches(PokerHandMatcher... matchers) {
+        PokerHandMatcher andMatcher = new AndMatcher(matchers);
+        assertTrue(andMatcher.matches(mockedHand));
+    }
+
+    void assertAndMatcherDoesNotMatch(PokerHandMatcher... matchers) {
+        PokerHandMatcher andMatcher = new AndMatcher(matchers);
         assertFalse(andMatcher.matches(mockedHand));
     }
 }
