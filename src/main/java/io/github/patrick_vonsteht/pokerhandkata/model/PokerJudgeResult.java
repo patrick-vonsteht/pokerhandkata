@@ -7,11 +7,15 @@ public final class PokerJudgeResult {
     private final PokerJudgeResultType type;
     private final PokerHand winner;
 
-    public static PokerJudgeResult drawRuleResult() {
+    public static PokerJudgeResult drawResult() {
         return new PokerJudgeResult(PokerJudgeResultType.DRAW);
     }
 
-    public static PokerJudgeResult winnerRuleResult(final PokerHand winner) {
+    public static PokerJudgeResult winnerResult(final PokerHand winner) {
+        if (winner == null) {
+            throw new IllegalArgumentException("Winner must not be null on a winnerResult.");
+        }
+
         return new PokerJudgeResult(PokerJudgeResultType.WINNER, winner);
     }
 

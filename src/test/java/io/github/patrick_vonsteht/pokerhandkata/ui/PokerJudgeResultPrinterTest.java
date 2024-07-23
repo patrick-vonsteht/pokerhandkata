@@ -33,7 +33,7 @@ class PokerJudgeResultPrinterTest {
 
     @Test
     void PokerJudgeResultPrinterPrintsHand1WinnerMessageWhenHand1Won() {
-        PokerJudgeResult result = PokerJudgeResult.winnerRuleResult(winnerHand);
+        PokerJudgeResult result = PokerJudgeResult.winnerResult(winnerHand);
         PokerJudgeResultPrinter printer = new PokerJudgeResultPrinter();
 
         printer.print(result, winnerHand, nonWinnerHand);
@@ -43,7 +43,7 @@ class PokerJudgeResultPrinterTest {
 
     @Test
     void PokerJudgeResultPrinterPrintsHand2WinnerMessageWhenHand2Won() {
-        PokerJudgeResult result = PokerJudgeResult.winnerRuleResult(winnerHand);
+        PokerJudgeResult result = PokerJudgeResult.winnerResult(winnerHand);
         PokerJudgeResultPrinter printer = new PokerJudgeResultPrinter();
 
         printer.print(result, nonWinnerHand, winnerHand);
@@ -53,7 +53,7 @@ class PokerJudgeResultPrinterTest {
 
     @Test
     void PokerJudgeResultPrinterPrintsDrawMessageWhenDraw() {
-        PokerJudgeResult result = PokerJudgeResult.drawRuleResult();
+        PokerJudgeResult result = PokerJudgeResult.drawResult();
         PokerJudgeResultPrinter printer = new PokerJudgeResultPrinter();
 
         printer.print(result, nonWinnerHand, nonWinnerHand);

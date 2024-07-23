@@ -32,14 +32,14 @@ public class PokerJudge {
             final RuleResult result = rule.compare(hand1, hand2);
 
             if (result.getType() == RuleResultType.WINNER_MATCH) {
-                return PokerJudgeResult.winnerRuleResult(result.getWinner());
+                return PokerJudgeResult.winnerResult(result.getWinner());
             }
 
             if (result.getType() == RuleResultType.DRAW_MATCH) {
-                return PokerJudgeResult.drawRuleResult();
+                return PokerJudgeResult.drawResult();
             }
         }
 
-        return PokerJudgeResult.drawRuleResult();
+        return PokerJudgeResult.drawResult();
     }
 }
