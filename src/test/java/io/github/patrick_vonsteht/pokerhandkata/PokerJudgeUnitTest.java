@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class PokerJudgeTest {
+class PokerJudgeUnitTest {
     private static final PokerHand mockedHand1 = mock(PokerHand.class);
     private static final PokerHand mockedHand2 = mock(PokerHand.class);
 
