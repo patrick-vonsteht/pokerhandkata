@@ -3,6 +3,9 @@ package io.github.patrick_vonsteht.pokerhandkata.model;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * A PokerHand which consists of exactly five playing cards.
+ */
 public final class PokerHand {
     private final List<Card> cards;
 

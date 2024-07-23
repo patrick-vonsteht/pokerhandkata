@@ -5,6 +5,9 @@ import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 
 import java.util.List;
 
+/**
+ * StraightMatcher matches hands with 5 cards of consecutive values.
+ */
 public class StraightMatcher implements PokerHandMatcher {
 
     @Override

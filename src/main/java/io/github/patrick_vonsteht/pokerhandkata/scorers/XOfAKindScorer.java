@@ -7,6 +7,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * XOfAKindScores scores hands which contain at least <minMatches> and at most <maxMatches> matches of <matchLength>
+ * cards of the same value. The scorer returns the values of the matches from highest to lowest, followed by the values
+ * of the non-matching cards from highest to lowest.
+ *
+ * Example:
+ * * For a hand with the card values (4,4,7,7,3), XOfAKindScorer(2,2,2) returns the stream (7, 4, 3)
+ */
 public class XOfAKindScorer implements PokerHandScorer {
     private final int matchLength;
     private final int minMatches;

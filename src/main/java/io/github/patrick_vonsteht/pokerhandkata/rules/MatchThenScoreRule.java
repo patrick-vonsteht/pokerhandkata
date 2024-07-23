@@ -8,6 +8,17 @@ import io.github.patrick_vonsteht.pokerhandkata.scorers.PokerHandScorer;
 import java.util.Iterator;
 import java.util.Optional;
 
+/**
+ * MatchThenScoreRule compares two PokerHands with a matcher and a scorer.
+ *
+ * The MatchThenScoreRule can yields the following results:
+ * * If the matcher matches none of the PokerHands, the result is NO_MATCH
+ * * If the matcher matches one of the PokerHands, the result is WINNER_MATCH, with the matching PokerHand.
+ * * If the matcher matches both of the PokerHands, the result depends on the scorer result:
+ *   * If the scorer results in the same scores for both PokerHands, the result is DRAW_MATCH
+ *   * Otherwise the result is WINNER_MATCH, with the PokerHand which has the higher score in the first score that is
+ *     not equal for both PokerHands.
+ */
 public class MatchThenScoreRule implements PokerHandComparisonRule {
     private final PokerHandMatcher matcher;
     private final PokerHandScorer scorer;

@@ -5,6 +5,15 @@ import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 
 import java.util.stream.Collectors;
 
+/**
+ * XOfAKindMatcher matches hands with which contain at least <minMatches> and at most <maxMatches> matches of
+ * <matchLength> cards of the same value.
+ *
+ * Example:
+ * * XOfAKindMatcher(2,1,1) matches any hand that has exactly one pair.
+ * * XOfAKindMatcher(2,1,2) matches any hand that has one or two pairs.
+ * * XOfAKindMatcher(2,2,2) matches any hand that has exactly two pairs.
+ */
 public class XOfAKindMatcher implements PokerHandMatcher {
 
     private final int matchLength;

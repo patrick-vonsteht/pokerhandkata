@@ -1,5 +1,8 @@
 package io.github.patrick_vonsteht.pokerhandkata.model;
 
+/**
+ * A PokerJudgeResult represents the result of comparing two poker hands according to the rules of a PokerJudge.
+ */
 public final class PokerJudgeResult {
     private final PokerJudgeResultType type;
     private final PokerHand winner;
@@ -26,6 +29,9 @@ public final class PokerJudgeResult {
         return type;
     }
 
+    /**
+     * Returns the winner of the comparison. This method is only supported on PokerJudgeResults of type WINNER.
+     */
     public PokerHand getWinner() {
         if (this.type == PokerJudgeResultType.DRAW) {
             throw new UnsupportedOperationException("Invalid call to PokerJudgeResults.getWinner(). Only " +
