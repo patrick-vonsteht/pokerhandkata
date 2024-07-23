@@ -8,48 +8,61 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RuleTestHelper {
+    // Any Suits
     public static List<CardSuit> ANY_CARD_SUITS =
             List.of(CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.SPADES, CardSuit.DIAMONDS, CardSuit.HEARTS);
 
+    // Flush Suits
     public static List<CardSuit> FLUSH_SUITS =
             List.of(CardSuit.DIAMONDS, CardSuit.DIAMONDS, CardSuit.DIAMONDS, CardSuit.DIAMONDS, CardSuit.DIAMONDS);
 
     public static List<CardSuit> OTHER_FLUSH_SUITS =
             List.of(CardSuit.CLUBS, CardSuit.CLUBS, CardSuit.CLUBS, CardSuit.CLUBS, CardSuit.CLUBS);
 
+    // Any Values
     public static List<CardValue> ANY_CARD_VALUES =
             List.of(CardValue.TWO, CardValue.QUEEN, CardValue.NINE, CardValue.EIGHT, CardValue.ACE);
-
-    public static List<CardValue> HIGH_CARD_VALUES =
-            List.of(CardValue.ACE, CardValue.KING, CardValue.JACK, CardValue.TEN, CardValue.EIGHT);
 
     public static List<CardValue> LOW_CARD_VALUES =
             List.of(CardValue.EIGHT, CardValue.SIX, CardValue.FIVE, CardValue.THREE, CardValue.TWO);
 
+    public static List<CardValue> HIGH_CARD_VALUES =
+            List.of(CardValue.ACE, CardValue.KING, CardValue.JACK, CardValue.TEN, CardValue.EIGHT);
+
+
+    // Street Values
     public static final List<CardValue> LOW_STREET_VALUES =
             List.of(CardValue.TWO, CardValue.THREE, CardValue.FOUR, CardValue.FIVE, CardValue.SIX);
 
     public static final List<CardValue> HIGH_STREET_VALUES =
             List.of(CardValue.TEN, CardValue.JACK, CardValue.QUEEN, CardValue.KING, CardValue.ACE);
 
+
+    // Full House Values
     public static final List<CardValue> LOW_FULL_HOUSE_VALUES =
             List.of(CardValue.TWO, CardValue.TWO, CardValue.TWO, CardValue.ACE, CardValue.ACE);
 
     public static final List<CardValue> HIGH_FULL_HOUSE_VALUES =
             List.of(CardValue.ACE, CardValue.ACE, CardValue.ACE, CardValue.TWO, CardValue.TWO);
 
+
+    // Four of a Kind Values
     public static final List<CardValue> LOW_FOUR_OF_A_KIND_VALUES =
             List.of(CardValue.TWO, CardValue.TWO, CardValue.TWO, CardValue.TWO, CardValue.ACE);
 
     public static final List<CardValue> HIGH_FOUR_OF_A_KIND_VALUES =
             List.of(CardValue.ACE, CardValue.ACE, CardValue.ACE, CardValue.ACE, CardValue.TWO);
 
+
+    // Three of a Kind Values
     public static final List<CardValue> LOW_THREE_OF_A_KIND_VALUES =
             List.of(CardValue.TWO, CardValue.TWO, CardValue.TWO, CardValue.KING, CardValue.ACE);
 
     public static final List<CardValue> HIGH_THREE_OF_A_KIND_VALUES =
             List.of(CardValue.ACE, CardValue.ACE, CardValue.ACE, CardValue.THREE, CardValue.TWO);
 
+
+    // Pair Values
     public static final List<CardValue> LOW_PAIR_VALUES =
             List.of(CardValue.TWO, CardValue.TWO, CardValue.QUEEN, CardValue.KING, CardValue.ACE);
 
@@ -62,6 +75,8 @@ public class RuleTestHelper {
     public static final List<CardValue> PAIR_WITH_HIGH_FOLLOW_UP_VALUES =
             List.of(CardValue.TEN, CardValue.TEN, CardValue.ACE, CardValue.KING, CardValue.QUEEN);
 
+
+    // Two Pair Values
     public static final List<CardValue> TWO_PAIR_WITH_LOW_FIRST_PAIR_VALUES =
             List.of(CardValue.TWO, CardValue.TWO, CardValue.TEN, CardValue.TEN, CardValue.NINE);
 
@@ -80,6 +95,8 @@ public class RuleTestHelper {
     public static final List<CardValue> TWO_PAIR_WITH_LOW_FOLLOW_UP_VALUE_VALUES =
             List.of(CardValue.TEN, CardValue.TEN, CardValue.NINE, CardValue.NINE, CardValue.TWO);
 
+
+    // High Card Values
     public static final List<CardValue> HIGH_CARD_VALUES_HIGH_HIGH_HIGH_HIGH_HIGH =
             List.of(CardValue.ACE, CardValue.KING, CardValue.QUEEN, CardValue.JACK, CardValue.NINE);
 
