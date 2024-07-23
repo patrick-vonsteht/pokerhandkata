@@ -1,6 +1,5 @@
 package io.github.patrick_vonsteht.pokerhandkata.model;
 
-import io.github.patrick_vonsteht.pokerhandkata.PokerHandTestHelper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

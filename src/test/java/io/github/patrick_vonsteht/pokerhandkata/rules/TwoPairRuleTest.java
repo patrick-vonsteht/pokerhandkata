@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TwoPairRuleTest {
     private static final ComparisonRuleFactory factory = new ComparisonRuleFactory();
-    private static final PokerHandComparisonRule rule = factory.createTwoPairsRule();
+    private static final ComparisonRule rule = factory.createTwoPairsRule();
 
     private static final List<CardSuit> anySuits = RuleTestHelper.ANY_CARD_SUITS;
 

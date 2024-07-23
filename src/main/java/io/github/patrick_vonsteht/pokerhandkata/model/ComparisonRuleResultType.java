@@ -1,6 +1,6 @@
 package io.github.patrick_vonsteht.pokerhandkata.model;
 
-public enum RuleResultType {
+public enum ComparisonRuleResultType {
     /**
      * The rule didn't match any hand.
      */

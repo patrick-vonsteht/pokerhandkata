@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * * XOfAKindMatcher(2,1,2) matches any hand that has one or two pairs.
  * * XOfAKindMatcher(2,2,2) matches any hand that has exactly two pairs.
  */
-public class XOfAKindMatcher implements PokerHandMatcher {
+public class XOfAKindMatcher implements Matcher {
 
     private final int matchLength;
     private final int minMatches;

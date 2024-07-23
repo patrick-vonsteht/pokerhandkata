@@ -2,14 +2,10 @@ package io.github.patrick_vonsteht.pokerhandkata;
 
 import io.github.patrick_vonsteht.pokerhandkata.model.*;
 import io.github.patrick_vonsteht.pokerhandkata.rules.ComparisonRuleFactory;
-import io.github.patrick_vonsteht.pokerhandkata.rules.PokerHandComparisonRule;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class PokerJudgeIntegrationTest {
 

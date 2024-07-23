@@ -86,7 +86,7 @@ class XOfAKindScorerTest {
                 new Card(CardSuit.HEARTS, CardValue.SIX)
         );
 
-        PokerHandScorer scorer = new XOfAKindScorer(1, 1, 1);
+        Scorer scorer = new XOfAKindScorer(1, 1, 1);
         assertThrows(IllegalArgumentException.class, () -> scorer.score(hand));
     }
 
@@ -100,7 +100,7 @@ class XOfAKindScorerTest {
                 new Card(CardSuit.HEARTS, CardValue.SIX)
         );
 
-        PokerHandScorer scorer = new XOfAKindScorer(2, 1, 1);
+        Scorer scorer = new XOfAKindScorer(2, 1, 1);
         assertThrows(IllegalArgumentException.class, () -> scorer.score(hand));
     }
 
@@ -116,7 +116,7 @@ class XOfAKindScorerTest {
 
         List<Integer> expectedScoreValues = expectedScores.stream().map(CardValue::numericValue).toList();
 
-        PokerHandScorer scorer = new XOfAKindScorer(matchLength, minMatches, maxMatches);
+        Scorer scorer = new XOfAKindScorer(matchLength, minMatches, maxMatches);
         List<Integer> actualScores = scorer.score(hand).toList();
 
         assertIterableEquals(expectedScoreValues, actualScores);

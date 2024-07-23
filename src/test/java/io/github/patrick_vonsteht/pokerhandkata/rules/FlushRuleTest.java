@@ -9,7 +9,7 @@ import java.util.List;
 public class FlushRuleTest {
 
     private static final ComparisonRuleFactory factory = new ComparisonRuleFactory();
-    private static final PokerHandComparisonRule rule = factory.createFlushRule();
+    private static final ComparisonRule rule = factory.createFlushRule();
 
     private static final List<CardSuit> anySuits = RuleTestHelper.ANY_CARD_SUITS;
     private static final List<CardSuit> flushSuits = RuleTestHelper.FLUSH_SUITS;

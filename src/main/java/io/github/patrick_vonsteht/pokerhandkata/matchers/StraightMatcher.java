@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * StraightMatcher matches hands with 5 cards of consecutive values.
  */
-public class StraightMatcher implements PokerHandMatcher {
+public class StraightMatcher implements Matcher {
 
     @Override
     public boolean matches(final PokerHand hand) {

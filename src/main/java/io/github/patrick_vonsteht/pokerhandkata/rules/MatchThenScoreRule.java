@@ -1,9 +1,9 @@
 package io.github.patrick_vonsteht.pokerhandkata.rules;
 
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
-import io.github.patrick_vonsteht.pokerhandkata.matchers.PokerHandMatcher;
-import io.github.patrick_vonsteht.pokerhandkata.model.RuleResult;
-import io.github.patrick_vonsteht.pokerhandkata.scorers.PokerHandScorer;
+import io.github.patrick_vonsteht.pokerhandkata.matchers.Matcher;
+import io.github.patrick_vonsteht.pokerhandkata.model.ComparisonRuleResult;
+import io.github.patrick_vonsteht.pokerhandkata.scorers.Scorer;
 
 import java.util.Iterator;
 import java.util.Optional;
@@ -19,34 +19,34 @@ import java.util.Optional;
  *   * Otherwise the result is WINNER_MATCH, with the PokerHand which has the higher score in the first score that is
  *     not equal for both PokerHands.
  */
-public class MatchThenScoreRule implements PokerHandComparisonRule {
-    private final PokerHandMatcher matcher;
-    private final PokerHandScorer scorer;
+public class MatchThenScoreRule implements ComparisonRule {
+    private final Matcher matcher;
+    private final Scorer scorer;
 
-    public MatchThenScoreRule(final PokerHandMatcher matcher, final PokerHandScorer scorer) {
+    public MatchThenScoreRule(final Matcher matcher, final Scorer scorer) {
         this.matcher = matcher;
         this.scorer = scorer;
     }
 
     @Override
-    public RuleResult compare(final PokerHand hand1, final PokerHand hand2) {
+    public ComparisonRuleResult compare(final PokerHand hand1, final PokerHand hand2) {
 
-        final Optional<RuleResult> matchingResult = compareByMatching(hand1, hand2);
+        final Optional<ComparisonRuleResult> matchingResult = compareByMatching(hand1, hand2);
 
         if (matchingResult.isPresent()) {
             return matchingResult.get();
         }
 
-        final Optional<RuleResult> scoringResult = compareByScoring(hand1, hand2);
+        final Optional<ComparisonRuleResult> scoringResult = compareByScoring(hand1, hand2);
 
         if (scoringResult.isPresent()) {
             return scoringResult.get();
         }
 
-        return RuleResult.drawRuleResult();
+        return ComparisonRuleResult.drawRuleResult();
     }
 
-    private Optional<RuleResult> compareByMatching(final PokerHand hand1, final PokerHand hand2) {
+    private Optional<ComparisonRuleResult> compareByMatching(final PokerHand hand1, final PokerHand hand2) {
         final boolean hand1Matches = matcher.matches(hand1);
         final boolean hand2Matches = matcher.matches(hand2);
 
@@ -55,21 +55,21 @@ public class MatchThenScoreRule implements PokerHandComparisonRule {
         final boolean onlyHand2Matches = !hand1Matches && hand2Matches;
 
         if (noHandMatches) {
-            return Optional.of(RuleResult.noMatchRuleResult());
+            return Optional.of(ComparisonRuleResult.noMatchRuleResult());
         }
 
         if (onlyHand1Matches) {
-            return Optional.of(RuleResult.winnerRuleResult(hand1));
+            return Optional.of(ComparisonRuleResult.winnerRuleResult(hand1));
         }
 
         if (onlyHand2Matches) {
-            return Optional.of(RuleResult.winnerRuleResult(hand2));
+            return Optional.of(ComparisonRuleResult.winnerRuleResult(hand2));
         }
 
         return Optional.empty();
     }
 
-    private Optional<RuleResult> compareByScoring(final PokerHand hand1, final PokerHand hand2) {
+    private Optional<ComparisonRuleResult> compareByScoring(final PokerHand hand1, final PokerHand hand2) {
         final Iterator<Integer> scores1 = scorer.score(hand1).iterator();
         final Iterator<Integer> scores2 = scorer.score(hand2).iterator();
 
@@ -78,11 +78,11 @@ public class MatchThenScoreRule implements PokerHandComparisonRule {
             final int score2 = scores2.next();
 
             if (score1 > score2) {
-                return Optional.of(RuleResult.winnerRuleResult(hand1));
+                return Optional.of(ComparisonRuleResult.winnerRuleResult(hand1));
             }
 
             if (score1 < score2) {
-                return Optional.of(RuleResult.winnerRuleResult(hand2));
+                return Optional.of(ComparisonRuleResult.winnerRuleResult(hand2));
             }
         }
 

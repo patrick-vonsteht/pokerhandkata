@@ -8,11 +8,11 @@ import java.util.List;
 /**
  * AndMatcher matches a hand when all of its child matchers match the hand.
  */
-public class AndMatcher implements PokerHandMatcher {
+public class AndMatcher implements Matcher {
 
-    private final List<PokerHandMatcher> matchers;
+    private final List<Matcher> matchers;
 
-    public AndMatcher(final PokerHandMatcher... matchers) {
+    public AndMatcher(final Matcher... matchers) {
         this.matchers = Arrays.stream(matchers).toList();
     }
 

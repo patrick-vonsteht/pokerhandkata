@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StraightFlushRuleTest {
 
     private static final ComparisonRuleFactory factory = new ComparisonRuleFactory();
-    private static final PokerHandComparisonRule rule = factory.createStraightFlushRule();
+    private static final ComparisonRule rule = factory.createStraightFlushRule();
 
     private static final List<CardSuit> anySuits = RuleTestHelper.ANY_CARD_SUITS;
     private static final List<CardSuit> flushSuits = RuleTestHelper.FLUSH_SUITS;

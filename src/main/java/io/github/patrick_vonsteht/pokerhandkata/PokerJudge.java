@@ -2,9 +2,9 @@ package io.github.patrick_vonsteht.pokerhandkata;
 
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerJudgeResult;
-import io.github.patrick_vonsteht.pokerhandkata.rules.PokerHandComparisonRule;
-import io.github.patrick_vonsteht.pokerhandkata.model.RuleResult;
-import io.github.patrick_vonsteht.pokerhandkata.model.RuleResultType;
+import io.github.patrick_vonsteht.pokerhandkata.rules.ComparisonRule;
+import io.github.patrick_vonsteht.pokerhandkata.model.ComparisonRuleResult;
+import io.github.patrick_vonsteht.pokerhandkata.model.ComparisonRuleResultType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.List;
  * If no rule matches, this counts as a draw.
  */
 public class PokerJudge {
-    private final List<PokerHandComparisonRule> rules;
+    private final List<ComparisonRule> rules;
 
-    public PokerJudge(final PokerHandComparisonRule... rulesInDescendingPriorityOrder) { // NOPMD Long parameter name is needed to convey semantics.
+    public PokerJudge(final ComparisonRule... rulesInDescendingPriorityOrder) { // NOPMD Long parameter name is needed to convey semantics.
         this.rules = Arrays.stream(rulesInDescendingPriorityOrder).toList();
     }
 
@@ -27,15 +27,15 @@ public class PokerJudge {
      *  * Winner Match: One of the PokerHands ranks higher according to the PokerJudge's rules.
      */
     public PokerJudgeResult judge(final PokerHand hand1, final PokerHand hand2) {
-        for (final PokerHandComparisonRule rule : rules) {
+        for (final ComparisonRule rule : rules) {
 
-            final RuleResult result = rule.compare(hand1, hand2);
+            final ComparisonRuleResult result = rule.compare(hand1, hand2);
 
-            if (result.getType() == RuleResultType.WINNER_MATCH) {
+            if (result.getType() == ComparisonRuleResultType.WINNER_MATCH) {
                 return PokerJudgeResult.winnerResult(result.getWinner());
             }
 
-            if (result.getType() == RuleResultType.DRAW_MATCH) {
+            if (result.getType() == ComparisonRuleResultType.DRAW_MATCH) {
                 return PokerJudgeResult.drawResult();
             }
         }

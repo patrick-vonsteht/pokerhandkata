@@ -5,26 +5,26 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RuleResultTest {
+public class ComparisonRuleResultTest {
 
     @Test
     void ThrowsIllegalArgumentExceptionWhenCreatingWinnerRuleResultWithNullWinner() {
-        assertThrows(IllegalArgumentException.class, () -> RuleResult.winnerRuleResult(null));
+        assertThrows(IllegalArgumentException.class, () -> ComparisonRuleResult.winnerRuleResult(null));
     }
 
     @Test
     void DoesNotThrowOnGetWinnerOnWinnerResult() {
         PokerHand winner = PokerHandTestHelper.create();
-        assertDoesNotThrow(() -> RuleResult.winnerRuleResult(winner).getWinner());
+        assertDoesNotThrow(() -> ComparisonRuleResult.winnerRuleResult(winner).getWinner());
     }
 
     @Test
     void ThrowsUnsupportedOperationExceptionOnGetWinnerOnDrawResult() {
-        assertThrows(UnsupportedOperationException.class, () -> RuleResult.drawRuleResult().getWinner());
+        assertThrows(UnsupportedOperationException.class, () -> ComparisonRuleResult.drawRuleResult().getWinner());
     }
 
     @Test
     void ThrowsUnsupportedOperationExceptionOnGetWinnerOnNoMatchResult() {
-        assertThrows(UnsupportedOperationException.class, () -> RuleResult.noMatchRuleResult().getWinner());
+        assertThrows(UnsupportedOperationException.class, () -> ComparisonRuleResult.noMatchRuleResult().getWinner());
     }
 }

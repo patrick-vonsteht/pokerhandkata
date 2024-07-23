@@ -9,7 +9,7 @@ import java.util.List;
 public class StraightRuleTest {
 
     private static final ComparisonRuleFactory factory = new ComparisonRuleFactory();
-    private static final PokerHandComparisonRule rule = factory.createStraightRule();
+    private static final ComparisonRule rule = factory.createStraightRule();
 
     private static final List<CardSuit> anySuits = RuleTestHelper.ANY_CARD_SUITS;
 

@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  * Example:
  * * For a hand with the card values (4,4,7,7,3), XOfAKindScorer(2,2,2) returns the stream (7, 4, 3)
  */
-public class XOfAKindScorer implements PokerHandScorer {
+public class XOfAKindScorer implements Scorer {
     private final int matchLength;
     private final int minMatches;
     private final int maxMatches;

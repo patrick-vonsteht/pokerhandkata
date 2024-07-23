@@ -10,8 +10,8 @@ import static org.mockito.Mockito.*;
 public class AndMatcherTest {
     private static final PokerHand mockedHand = mock(PokerHand.class);
 
-    private static final PokerHandMatcher mockedMatchingRule = mock(PokerHandMatcher.class);
-    private static final PokerHandMatcher mockedNonMatchingRule = mock(PokerHandMatcher.class);
+    private static final Matcher mockedMatchingRule = mock(Matcher.class);
+    private static final Matcher mockedNonMatchingRule = mock(Matcher.class);
 
     @BeforeAll
     public static void setupMocks() {
@@ -54,13 +54,13 @@ public class AndMatcherTest {
         assertDoesNotMatch(mockedNonMatchingRule, mockedMatchingRule);
     }
 
-    void assertMatches(PokerHandMatcher... matchers) {
-        PokerHandMatcher andMatcher = new AndMatcher(matchers);
+    void assertMatches(Matcher... matchers) {
+        Matcher andMatcher = new AndMatcher(matchers);
         assertTrue(andMatcher.matches(mockedHand));
     }
 
-    void assertDoesNotMatch(PokerHandMatcher... matchers) {
-        PokerHandMatcher andMatcher = new AndMatcher(matchers);
+    void assertDoesNotMatch(Matcher... matchers) {
+        Matcher andMatcher = new AndMatcher(matchers);
         assertFalse(andMatcher.matches(mockedHand));
     }
 }

@@ -6,7 +6,7 @@ import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 /**
  * Flush matcher matches hands with all cards of the same suit.
  */
-public class FlushMatcher implements PokerHandMatcher {
+public class FlushMatcher implements Matcher {
 
     @Override
     public boolean matches(final PokerHand hand) {

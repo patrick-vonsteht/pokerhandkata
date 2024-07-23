@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * Usually, you'll first run a PokerHandMatcher to verify that the PokerHand matches a pattern, and then run the
  * corresponding scorer to get the scores.
  */
-public interface PokerHandScorer {
+public interface Scorer {
 
     /**
      * Returns a stream of one or more scores for the PokerHand.

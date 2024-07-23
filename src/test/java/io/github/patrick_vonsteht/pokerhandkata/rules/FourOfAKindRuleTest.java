@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FourOfAKindRuleTest {
     private static final ComparisonRuleFactory factory = new ComparisonRuleFactory();
-    private static final PokerHandComparisonRule rule = factory.createFourOfAKindRule();
+    private static final ComparisonRule rule = factory.createFourOfAKindRule();
 
     private static final List<CardSuit> anySuits = RuleTestHelper.ANY_CARD_SUITS;
 
