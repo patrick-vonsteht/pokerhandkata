@@ -123,5 +123,5 @@ class PokerJudgeIntegrationTest {
 The build invokes multiple static code analyses. The build fails on less than 80% C0 or C1 JaCoCo test coverage, and on
 any issue reported by PMD or SpotBugs. To view the reports of these tools, see:
 * [JaCoCo](https://www.jacoco.org/jacoco/) Test Coverage Report: `target/site/jacoco/index.html`
-* [PMD](https://pmd.github.io/) Source Code Static Code Analysis Report `target/site/pmd.html`
-* [SpotBugs](https://spotbugs.github.io/) Byte Code Static Code Analysis `target/spotbugs.html`
+* [PMD](https://pmd.github.io/) Source Code Static Code Analysis Report: `target/site/pmd.html`
+* [SpotBugs](https://spotbugs.github.io/) Byte Code Static Code Analysis Report: `target/spotbugs.html`
