@@ -20,19 +20,20 @@ Determine which poker hand wins according to the following poker rules:
 
 ## Solution Approach
 
-My solution separates the problem into the following responsibilities:
-* PokerHandMatchers determine whether a single PokerHand matches one of the poker rules.
-* PokerHandScorers determine the score(s) that a single PokerHand gets according to the poker rule that it matches.
-* PokerHandComparisonRules compare two PokerHands according to a single poker rule. 
-* PokerJudge compares two PokerHands according to the precedence-ordered set of poker rules.
+My solution divides the problem into the following responsibilities:
+* Matchers: Determine whether a single PokerHand matches one of the poker rules.
+* Scorers: Determine the score(s) that a single PokerHand gets according to the poker rule that it matches.
+* ComparisonRules: Compare two PokerHands according to a single poker rule.
+* PokerJudge: Compares two PokerHands according to the precedence-ordered set of poker rules.
 
-The solution uses a procedural approach: I define a set of data objects and a separate set of algorithm classes that act 
-on these objects. This separation makes it possible to add or change poker rules without impacting unrelated existing 
-classes. The result is a very flexible system that could easily be extended with a completely different rule set.
+The solution employs a procedural approach by defining a set of data objects and a separate set of algorithm classes 
+that act on these objects. This separation allows for the addition or modification of poker rules without affecting 
+unrelated existing classes and data structures. The result is a highly flexible system that could easily be extended with a completely 
+different rule set.
 
 Matchers and scorers have been generalized and combined in different ways to implement the poker rules with a very small
-set of matcher and scorer implementations. Wrapping the creation of the PokerHandComparisonRules in a factory class
-hides this implementation detail and re-establishes meaningful names for the construction of the rules.
+set of matcher and scorer implementations. Wrapping the creation of the ComparisonRules in a factory class hides this 
+implementation detail and re-establishes meaningful names for the construction of the rules.
 
 Constructor dependency injection makes it possible to test all parts of the solution in isolation. Due to the small
 size of the codebase I decided against the additional complexity of introducing a dependency injection library.
