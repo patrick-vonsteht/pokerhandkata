@@ -127,3 +127,14 @@ any issue reported by PMD or SpotBugs. To view the reports of these tools, see:
 * [JaCoCo](https://www.jacoco.org/jacoco/) Test Coverage Report: `target/site/jacoco/index.html`
 * [PMD](https://pmd.github.io/) Source Code Static Code Analysis Report: `target/site/pmd.html`
 * [SpotBugs](https://spotbugs.github.io/) Byte Code Static Code Analysis Report: `target/spotbugs.html`
+
+
+## Bonus Exercises
+You can use this kata as the basis for refactoring katas. Here are some ideas:
+* Extend the code to support both scoring poker hands and [Yahtzee](https://en.wikipedia.org/wiki/Yahtzee) dice throws. 
+  Try to reuse as much of the existing code as possible, generalizing classes where needed. How can you cleanly handle
+  both poker hands with suit and value and dice with just a value?
+* Refactor the code to use a dependency injection library. Explore what the advantages and disadvantages of using the
+  library are in this case.
+* Extend the code to judge situations with two cards on each hand, and five community cards that can be used by both 
+  hands. Judge each hand by the highest five card combination that can be formed from the seven available cards.
