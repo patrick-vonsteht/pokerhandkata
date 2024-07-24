@@ -1,6 +1,7 @@
 package io.github.patrick_vonsteht.pokerhandkata.rules;
 
 import io.github.patrick_vonsteht.pokerhandkata.matchers.*;
+import io.github.patrick_vonsteht.pokerhandkata.model.Card;
 import io.github.patrick_vonsteht.pokerhandkata.scorers.Scorer;
 import io.github.patrick_vonsteht.pokerhandkata.scorers.XOfAKindScorer;
 
@@ -12,7 +13,7 @@ public class ComparisonRuleFactory {
      */
     public ComparisonRule createStraightFlushRule() {
         final Matcher straightMatcher = new StraightMatcher();
-        final Matcher flushMatcher = new FlushMatcher();
+        final Matcher flushMatcher = new XOfAKindMatcher(5,1,1, Card::numericSuitValue);
         final Matcher straightFlushMatcher = new AndMatcher(straightMatcher, flushMatcher);
 
         // The XOfAKindScorer(1,1,5) scorer returns all card values in descending order. However, the additional scores
@@ -62,7 +63,7 @@ public class ComparisonRuleFactory {
      * Hand contains 5 cards of the same suit. Hands which are both flushes are ranked using the rules for High Card.
      */
     public ComparisonRule createFlushRule() {
-        final Matcher flushMatcher = new FlushMatcher();
+        final Matcher flushMatcher = new XOfAKindMatcher(5,1,1, Card::numericSuitValue);
         final Scorer highCardScorer = new XOfAKindScorer(1, 1, 5);
         return new MatchThenScoreRule(flushMatcher, highCardScorer);
     }
