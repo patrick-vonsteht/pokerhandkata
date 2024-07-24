@@ -39,20 +39,33 @@ Constructor dependency injection makes it possible to test all parts of the solu
 size of the codebase I decided against the additional complexity of introducing a dependency injection library.
 
 ## Build and Run
-This program builds with [Maven](https://maven.apache.org/). 
+This program builds with [Maven](https://maven.apache.org/).
 Execute the following commands in the repository root folder to build the program with the 
 [Maven Wrapper](https://maven.apache.org/wrapper/) which ensures that you run the build with the same Maven version 
 that I tested with:
 ```
 ./mvnw install 
-java -jar target/pokerhandkata-1.0.0-jar-with-dependencies.jar 
 ```
 
 If you don't trust the script, you can also install and execute Maven directly. Please note that the used plugin 
 versions require at least Maven 3.6.3:
 ```
 mvn install
-java -jar target/pokerhandkata-1.0.0-jar-with-dependencies.jar 
+```
+
+By default, maven builds the program for Java version 22. To build for older java versions, change the 
+`maven.compiler.source`and `maven.compiler.target` properties in the `pom.xml`. The code compiles for java version 16+:
+
+```
+<properties>
+    <maven.compiler.source>16</maven.compiler.source>
+    <maven.compiler.target>16</maven.compiler.target>
+</properties>
+```
+
+After you built the program, you can execute it as follows:
+```
+java -jar target/pokerhandkata-1.0.0-jar-with-dependencies.jar
 ```
 
 There's also a binary release available in the releases of this repository.
@@ -121,13 +134,31 @@ class PokerJudgeIntegrationTest {
     ...
 ```
 
+## Test
+To run the tests, execute one of the following commands (see above for the difference between `.mvnw` and `mvn`):
+```
+./mvnw test
+```
+```
+mvn test
+```
+
 ## Static Code Analysis
-The build invokes multiple static code analyses. The build fails on less than 80% C0 or C1 JaCoCo test coverage, and on
-any issue reported by PMD or SpotBugs. To view the reports of these tools, see:
+To run the tests and the static code analyses, execute one of the following commands (see above for the difference 
+between `.mvnw` and `mvn`):
+```
+./mvnw verify
+```
+```
+mvn verify
+```
+
+The build fails on less than 80% C0 or C1 JaCoCo test coverage, and on any issue reported by PMD or SpotBugs. 
+
+To view the reports of the static code analysis tools, see:
 * [JaCoCo](https://www.jacoco.org/jacoco/) Test Coverage Report: `target/site/jacoco/index.html`
 * [PMD](https://pmd.github.io/) Source Code Static Code Analysis Report: `target/site/pmd.html`
 * [SpotBugs](https://spotbugs.github.io/) Byte Code Static Code Analysis Report: `target/spotbugs.html`
-
 
 ## Bonus Exercises
 You can use this kata as the basis for refactoring katas. Here are some ideas:
