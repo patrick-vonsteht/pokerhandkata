@@ -45,15 +45,17 @@ Execute the following commands in the repository root folder to build the progra
 that I tested with:
 ```
 ./mvnw install 
-java -jar target/pokerhandkata-1.0-jar-with-dependencies.jar 
+java -jar target/pokerhandkata-1.0.0-jar-with-dependencies.jar 
 ```
 
 If you don't trust the script, you can also install and execute Maven directly. Please note that the used plugin 
 versions require at least Maven 3.6.3:
 ```
 mvn install
-java -jar target/pokerhandkata-1.0-jar-with-dependencies.jar 
+java -jar target/pokerhandkata-1.0.0-jar-with-dependencies.jar 
 ```
+
+There's also a binary release available in the releases of this repository.
 
 ## Configure
 The hands to compare are defined as static variables in the PokerHandKata class, which is the main entry point of the
