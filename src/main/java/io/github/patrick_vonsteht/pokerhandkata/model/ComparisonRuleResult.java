@@ -1,7 +1,7 @@
 package io.github.patrick_vonsteht.pokerhandkata.model;
 
 /**
- * A RuleResult represents the result of comparing two poker hands according to a single PokerHandComparisonRule.
+ * A ComparisonRuleResult represents the result of comparing two poker hands according to a single PokerHandComparisonRule.
  */
 public final class ComparisonRuleResult {
     private final ComparisonRuleResultType type;
@@ -42,8 +42,8 @@ public final class ComparisonRuleResult {
      */
     public PokerHand getWinner() {
         if (this.type == ComparisonRuleResultType.NO_MATCH || this.type == ComparisonRuleResultType.DRAW_MATCH) {
-            throw new UnsupportedOperationException("Invalid call to RuleResult.getWinner(). Only RuleResults with " +
-                    "type WINNER_MATCH support getWinner.");
+            throw new UnsupportedOperationException("Invalid call to ComparisonRuleResult.getWinner(). Only " +
+                    "RuleResults with type WINNER_MATCH support getWinner.");
         }
 
         return winner;
