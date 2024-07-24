@@ -17,22 +17,22 @@ public class StraightFlushRuleTest {
     private static final List<CardSuit> otherFlushSuits = RuleTestHelper.OTHER_FLUSH_SUITS;
 
     private static final List<CardValue> anyValues = RuleTestHelper.ANY_CARD_VALUES;
-    private static final List<CardValue> highStreetValues = RuleTestHelper.HIGH_STREET_VALUES;
-    private static final List<CardValue> lowStreetValues = RuleTestHelper.LOW_STREET_VALUES;
+    private static final List<CardValue> highStraightValues = RuleTestHelper.HIGH_STRAIGHT_VALUES;
+    private static final List<CardValue> lowStraightValues = RuleTestHelper.LOW_STRAIGHT_VALUES;
 
     @Test
     void ReturnsStraightFlushHandWhenOtherHandDoesNotHaveStraightFlush() {
-        RuleTestHelper.assertHand1Wins(rule, flushSuits, highStreetValues, anySuits, anyValues);
+        RuleTestHelper.assertHand1Wins(rule, flushSuits, highStraightValues, anySuits, anyValues);
     }
 
     @Test
     void ReturnsStraightFlushHandWithHigherHighestCardWhenBothHandsHaveStraightFlush() {
-        RuleTestHelper.assertHand1Wins(rule, flushSuits, highStreetValues, flushSuits, lowStreetValues);
+        RuleTestHelper.assertHand1Wins(rule, flushSuits, highStraightValues, flushSuits, lowStraightValues);
     }
 
     @Test
     void ReturnsDrawWhenBothHandsHaveStraightFlushWithSameHighestCard() {
-        RuleTestHelper.assertDrawResult(rule, flushSuits, highStreetValues, otherFlushSuits, highStreetValues);
+        RuleTestHelper.assertDrawResult(rule, flushSuits, highStraightValues, otherFlushSuits, highStraightValues);
     }
 
     @Test

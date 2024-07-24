@@ -30,11 +30,11 @@ public class RuleTestHelper {
             List.of(CardValue.ACE, CardValue.KING, CardValue.JACK, CardValue.TEN, CardValue.EIGHT);
 
 
-    // Street Values
-    public static final List<CardValue> LOW_STREET_VALUES =
+    // Straight Values
+    public static final List<CardValue> LOW_STRAIGHT_VALUES =
             List.of(CardValue.TWO, CardValue.THREE, CardValue.FOUR, CardValue.FIVE, CardValue.SIX);
 
-    public static final List<CardValue> HIGH_STREET_VALUES =
+    public static final List<CardValue> HIGH_STRAIGHT_VALUES =
             List.of(CardValue.TEN, CardValue.JACK, CardValue.QUEEN, CardValue.KING, CardValue.ACE);
 
 

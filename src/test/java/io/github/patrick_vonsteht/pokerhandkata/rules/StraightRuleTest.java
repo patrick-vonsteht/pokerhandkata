@@ -14,22 +14,22 @@ public class StraightRuleTest {
     private static final List<CardSuit> anySuits = RuleTestHelper.ANY_CARD_SUITS;
 
     private static final List<CardValue> anyValues = RuleTestHelper.ANY_CARD_VALUES;
-    private static final List<CardValue> highStreetValues = RuleTestHelper.HIGH_STREET_VALUES;
-    private static final List<CardValue> lowStreetValues = RuleTestHelper.LOW_STREET_VALUES;
+    private static final List<CardValue> highStraightValues = RuleTestHelper.HIGH_STRAIGHT_VALUES;
+    private static final List<CardValue> lowStraightValues = RuleTestHelper.LOW_STRAIGHT_VALUES;
 
     @Test
     void ReturnsStraightHandWhenOtherHandDoesNotHaveStraight() {
-        RuleTestHelper.assertHand1Wins(rule, anySuits, highStreetValues, anySuits, anyValues);
+        RuleTestHelper.assertHand1Wins(rule, anySuits, highStraightValues, anySuits, anyValues);
     }
 
     @Test
     void ReturnsStraightHandWithHigherHighestCardWhenBothHandsHaveStraight() {
-        RuleTestHelper.assertHand1Wins(rule, anySuits, highStreetValues, anySuits, lowStreetValues);
+        RuleTestHelper.assertHand1Wins(rule, anySuits, highStraightValues, anySuits, lowStraightValues);
     }
 
     @Test
     void ReturnsDrawWhenBothHandsHaveStraightWithSameHighestCard() {
-        RuleTestHelper.assertDrawResult(rule, anySuits, highStreetValues, anySuits, highStreetValues);
+        RuleTestHelper.assertDrawResult(rule, anySuits, highStraightValues, anySuits, highStraightValues);
     }
 
     @Test
