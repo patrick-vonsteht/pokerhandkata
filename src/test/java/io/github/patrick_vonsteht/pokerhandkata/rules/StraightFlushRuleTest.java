@@ -14,7 +14,6 @@ public class StraightFlushRuleTest {
 
     private static final List<CardSuit> anySuits = RuleTestHelper.ANY_CARD_SUITS;
     private static final List<CardSuit> flushSuits = RuleTestHelper.FLUSH_SUITS;
-    private static final List<CardSuit> otherFlushSuits = RuleTestHelper.OTHER_FLUSH_SUITS;
 
     private static final List<CardValue> anyValues = RuleTestHelper.ANY_CARD_VALUES;
     private static final List<CardValue> highStraightValues = RuleTestHelper.HIGH_STRAIGHT_VALUES;
@@ -32,7 +31,7 @@ public class StraightFlushRuleTest {
 
     @Test
     void ReturnsDrawWhenBothHandsHaveStraightFlushWithSameHighestCard() {
-        RuleTestHelper.assertDrawResult(rule, flushSuits, highStraightValues, otherFlushSuits, highStraightValues);
+        RuleTestHelper.assertDrawResult(rule, flushSuits, highStraightValues, flushSuits, highStraightValues);
     }
 
     @Test
