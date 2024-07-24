@@ -18,7 +18,7 @@ public interface Scorer {
      * Returns a stream of one or more scores for the PokerHand.
      * Multiple scores are returned in order of precedence from highest to lowest.
      * To compare two score lists, compare the counts in stream order, only considering later scores if earlier scores
-     * are eaual.
+     * are equal.
      */
     Stream<Integer> score(PokerHand hand);
 }
