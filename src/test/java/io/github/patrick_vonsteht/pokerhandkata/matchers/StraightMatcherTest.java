@@ -1,6 +1,7 @@
 package io.github.patrick_vonsteht.pokerhandkata.matchers;
 
 import io.github.patrick_vonsteht.pokerhandkata.PokerHandTestHelper;
+import io.github.patrick_vonsteht.pokerhandkata.TestValues;
 import io.github.patrick_vonsteht.pokerhandkata.model.CardValue;
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 import org.junit.jupiter.api.Test;
@@ -14,22 +15,22 @@ public class StraightMatcherTest {
 
     @Test
     void MatchesLowestStraight() {
-        assertMatches(List.of(CardValue.TWO, CardValue.THREE, CardValue.FIVE, CardValue.FOUR, CardValue.SIX));
+        assertMatches(TestValues.LOW_STRAIGHT_VALUES);
     }
 
     @Test
     void MatchesMiddleStraight() {
-        assertMatches(List.of(CardValue.FIVE, CardValue.SEVEN, CardValue.SIX, CardValue.EIGHT, CardValue.NINE));
+        assertMatches(TestValues.MIDDLE_STRAIGHT_VALUES);
     }
 
     @Test
     void MatchesHighestStraight() {
-        assertMatches(List.of(CardValue.ACE, CardValue.QUEEN, CardValue.KING, CardValue.JACK, CardValue.TEN));
+        assertMatches(TestValues.HIGH_STRAIGHT_VALUES);
     }
 
     @Test
     void DoesNotMatchNonStraight() {
-        assertDoesNotMatch(List.of(CardValue.TWO, CardValue.QUEEN, CardValue.SIX, CardValue.JACK, CardValue.NINE));
+        assertDoesNotMatch(TestValues.ANY_CARD_VALUES);
     }
 
     private void assertMatches(List<CardValue> handValues) {

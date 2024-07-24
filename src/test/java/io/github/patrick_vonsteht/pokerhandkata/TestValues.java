@@ -30,6 +30,9 @@ public final class TestValues {
     public static final List<CardValue> LOW_STRAIGHT_VALUES =
             List.of(CardValue.TWO, CardValue.THREE, CardValue.FOUR, CardValue.FIVE, CardValue.SIX);
 
+    public static final List<CardValue> MIDDLE_STRAIGHT_VALUES =
+            List.of(CardValue.FIVE, CardValue.SIX, CardValue.SEVEN, CardValue.EIGHT, CardValue.NINE);
+
     public static final List<CardValue> HIGH_STRAIGHT_VALUES =
             List.of(CardValue.TEN, CardValue.JACK, CardValue.QUEEN, CardValue.KING, CardValue.ACE);
 
