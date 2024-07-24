@@ -58,8 +58,13 @@ class MatchThenScoreRuleTest {
     }
 
     @Test
-    void ThrowsUnsupportedOperationExceptionWhenBothHandsMatchFirstScoresAreEqualAndHand2HasMoreScores() {
-        assertUnsupportedOperationException(true, true, Stream.of(5, 4), Stream.of(5, 4, 3));
+    void ThrowsUnsupportedOperationExceptionWhenBothHandsMatchAndFirstHandHasMoreScores() {
+        assertUnsupportedOperationException(true, true, Stream.of(5), Stream.of());
+    }
+
+    @Test
+    void ThrowsUnsupportedOperationExceptionWhenBothHandsMatchAndSecondHandHasMoreScores() {
+        assertUnsupportedOperationException(true, true, Stream.of(), Stream.of(5));
     }
 
     private void assertDraw(final boolean resultForHand1, final boolean resultForHand2,
