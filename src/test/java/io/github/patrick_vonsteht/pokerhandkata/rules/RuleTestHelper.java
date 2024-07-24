@@ -15,7 +15,8 @@ public class RuleTestHelper {
     // Flush Suits
     public static List<CardSuit> FLUSH_SUITS =
             List.of(CardSuit.DIAMONDS, CardSuit.DIAMONDS, CardSuit.DIAMONDS, CardSuit.DIAMONDS, CardSuit.DIAMONDS);
-    
+
+
     // Any Values
     public static List<CardValue> ANY_CARD_VALUES =
             List.of(CardValue.TWO, CardValue.QUEEN, CardValue.NINE, CardValue.EIGHT, CardValue.ACE);

@@ -2,6 +2,7 @@ package io.github.patrick_vonsteht.pokerhandkata.ui;
 
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerHand;
 import io.github.patrick_vonsteht.pokerhandkata.model.PokerJudgeResult;
+import io.github.patrick_vonsteht.pokerhandkata.model.PokerJudgeResultType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,8 @@ import static org.mockito.Mockito.*;
 
 class PokerJudgeResultPrinterTest {
 
-    private final PokerHand winnerHand = mock(PokerHand.class);
-    private final PokerHand nonWinnerHand = mock(PokerHand.class);
+    private final PokerHand hand1 = mock(PokerHand.class);
+    private final PokerHand hand2 = mock(PokerHand.class);
 
     private final PrintStream standardOut = System.out;
     private ByteArrayOutputStream testOut;
@@ -33,31 +34,26 @@ class PokerJudgeResultPrinterTest {
 
     @Test
     void PokerJudgeResultPrinterPrintsHand1WinnerMessageWhenHand1Won() {
-        PokerJudgeResult result = PokerJudgeResult.winnerResult(winnerHand);
-        PokerJudgeResultPrinter printer = new PokerJudgeResultPrinter();
-
-        printer.print(result, winnerHand, nonWinnerHand);
-
-        assertEquals("Hand1 has won!\n", testOut.toString());
+        PokerJudgeResult result = PokerJudgeResult.winnerResult(hand1);
+        assertOutput("Hand1 has won!\n", result);
     }
 
     @Test
     void PokerJudgeResultPrinterPrintsHand2WinnerMessageWhenHand2Won() {
-        PokerJudgeResult result = PokerJudgeResult.winnerResult(winnerHand);
-        PokerJudgeResultPrinter printer = new PokerJudgeResultPrinter();
-
-        printer.print(result, nonWinnerHand, winnerHand);
-
-        assertEquals("Hand2 has won!\n", testOut.toString());
+        PokerJudgeResult result = PokerJudgeResult.winnerResult(hand2);
+        assertOutput("Hand2 has won!\n", result);
     }
 
     @Test
     void PokerJudgeResultPrinterPrintsDrawMessageWhenDraw() {
         PokerJudgeResult result = PokerJudgeResult.drawResult();
-        PokerJudgeResultPrinter printer = new PokerJudgeResultPrinter();
-
-        printer.print(result, nonWinnerHand, nonWinnerHand);
-
-        assertEquals("Draw between hand1 and hand2!\n", testOut.toString());
+        assertOutput("Draw between hand1 and hand2!\n", result);
     }
+
+    private void assertOutput(final String expectedOutput, final PokerJudgeResult result) {
+        PokerJudgeResultPrinter printer = new PokerJudgeResultPrinter();
+        printer.print(result, hand1, hand2);
+        assertEquals(expectedOutput, testOut.toString());
+    }
+
 }
